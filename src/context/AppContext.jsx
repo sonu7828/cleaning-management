@@ -140,14 +140,31 @@ export const AppProvider = ({ children }) => {
         return true;
     };
 
+    // Get the dashboard path for a given role
+    const getRoleDashboardPath = (role) => {
+        const rolePaths = {
+            superadmin: '/dashboard',
+            admin: '/dashboard',
+            technician: '/dashboard',
+            driver: '/dashboard',
+            accounts: '/dashboard',
+            client: '/dashboard',
+        };
+        return rolePaths[role] || '/dashboard';
+    };
+
     const login = (email, password) => {
-        // Fallback login: auto-detect role by email, otherwise default to admin
+        // Validate inputs
+        if (!email || !password) return false;
+
+        // Auto-detect role by email (case-insensitive)
+        const emailLower = email.toLowerCase().trim();
         let role = 'admin';
-        if (email.includes('super')) role = 'superadmin';
-        else if (email.includes('tech')) role = 'technician';
-        else if (email.includes('driver')) role = 'driver';
-        else if (email.includes('account')) role = 'accounts';
-        else if (email.includes('client')) role = 'client';
+        if (emailLower.includes('super')) role = 'superadmin';
+        else if (emailLower.includes('tech')) role = 'technician';
+        else if (emailLower.includes('driver')) role = 'driver';
+        else if (emailLower.includes('account')) role = 'accounts';
+        else if (emailLower.includes('client')) role = 'client';
 
         return loginAsRole(role);
     };
@@ -366,6 +383,7 @@ export const AppProvider = ({ children }) => {
             login,
             logout,
             updateUser,
+            getRoleDashboardPath,
 
             // Core State Database
             companies,

@@ -12,9 +12,7 @@ import {
     FaArrowRight, 
     FaTwitter, 
     FaGithub, 
-    FaLinkedin,
-    FaShieldAlt,
-    faRocket
+    FaLinkedin
 } from 'react-icons/fa';
 
 const LandingPage = () => {
