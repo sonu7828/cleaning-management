@@ -1,0 +1,49 @@
+{
+  "name": "cleaning-crm-saas-ui",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "@types/react": "^19.2.15",
+    "@types/react-dom": "^19.2.3",
+    "axios": "^1.16.1",
+    "framer-motion": "^4.1.17",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-icons": "^4.3.1",
+    "react-router-dom": "^7.15.1",
+    "react-scripts": "5.0.0",
+    "react-table": "^7.8.0",
+    "recharts": "^2.1.9",
+    "tailwindcss": "^2.2.19"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.2",
+    "postcss": "^8.4.5",
+    "typescript": "^4.4.4"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

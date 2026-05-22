@@ -1,0 +1,28 @@
+/* Design Tokens – CSS Variables */
+:root {
+  --color-primary: #1E3A8A; /* Primary */
+  --color-secondary: #2563EB; /* Secondary */
+  --color-background: #0F172A; /* Page background */
+  --color-card: #111827; /* Card background */
+  --color-border: #1F2937; /* Border */
+  --color-text-primary: #F9FAFB; /* Primary text */
+  --color-text-secondary: #9CA3AF; /* Secondary text */
+  --color-success: #10B981; /* Success */
+  --color-warning: #F59E0B; /* Warning */
+  --color-danger: #EF4444; /* Danger */
+  /* Spacing tokens (example) */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+}
+
+/* Utility classes for quick use */
+.bg-primary { background-color: var(--color-primary); }
+.bg-secondary { background-color: var(--color-secondary); }
+.bg-card { background-color: var(--color-card); }
+.text-primary { color: var(--color-text-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.border-default { border-color: var(--color-border); }
+.shadow-glow-blue { box-shadow: 0 0 25px rgba(37, 99, 235, 0.15); }

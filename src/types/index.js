@@ -1,0 +1,2 @@
+// This file defines TypeScript types and interfaces used throughout the application, ensuring type safety.
+export {};
