@@ -51,5 +51,8 @@ The application has been fully transformed from its initial Dark theme to a high
 * **Header & Text**: Gray-blue headers (`bg-slate-50` / `#EBF2F6`) and dark slate-900 text (`#1E293B`) for absolute legibility.
 * **Badges**: Updated to high-contrast light colors with deep dark text matching their status/trend dynamically (e.g. `In Progress` is `bg-blue-50 text-blue-700 border-blue-200`).
 
-
-
+### 5. Landing Page Theme Transformation & Footer Logo Removal
+* **Section Backgrounds**: Alternate between pure white (`bg-white`) and light gray-blue (`bg-slate-50` / `bg-[#EBF2F6]`) for section backdrops.
+* **Section Heading Contrast**: Dynamically switch text color based on section background using `light={true/false}` on `SectionHeading` (dark slate-900 / slate-500 on light backgrounds; white / blue-100 on Steel Blue backgrounds).
+* **Inquiry Form Inputs**: Custom gray-blue input styling `#F8FAFC` applied via `.landing-form` selector, with slate labels (`text-slate-500`) on white form card.
+* **Footer Logo**: Branding logo image removed from footer; high-contrast white footer title "Team Enviro" and light-blue links (`text-blue-100`) preserved on Steel Blue background.

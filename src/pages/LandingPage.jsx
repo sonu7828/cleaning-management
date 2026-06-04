@@ -45,15 +45,15 @@ const colorMap = {
 };
 
 const lightColorMap = {
-    cyan: { bg: 'bg-cyan-50 border-cyan-200', text: 'text-cyan-700' },
-    emerald: { bg: 'bg-emerald-50 border-emerald-200', text: 'text-emerald-700' },
-    blue: { bg: 'bg-blue-50 border-blue-200', text: 'text-blue-700' },
-    amber: { bg: 'bg-amber-50 border-amber-200', text: 'text-amber-700' },
-    purple: { bg: 'bg-purple-50 border-purple-200', text: 'text-purple-700' },
-    rose: { bg: 'bg-rose-50 border-rose-200', text: 'text-rose-700' },
-    indigo: { bg: 'bg-indigo-50 border-indigo-200', text: 'text-indigo-700' },
-    teal: { bg: 'bg-teal-50 border-teal-200', text: 'text-teal-700' },
-    slate: { bg: 'bg-slate-100 border-slate-200', text: 'text-slate-700' },
+    cyan: { bg: 'bg-cyan-50', border: 'border-cyan-200', text: 'text-cyan-700' },
+    emerald: { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-700' },
+    blue: { bg: 'bg-blue-50', border: 'border-blue-200', text: 'text-blue-700' },
+    amber: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-700' },
+    purple: { bg: 'bg-purple-50', border: 'border-purple-200', text: 'text-purple-700' },
+    rose: { bg: 'bg-rose-50', border: 'border-rose-200', text: 'text-rose-700' },
+    indigo: { bg: 'bg-indigo-50', border: 'border-indigo-200', text: 'text-indigo-700' },
+    teal: { bg: 'bg-teal-50', border: 'border-teal-200', text: 'text-teal-700' },
+    slate: { bg: 'bg-slate-100', border: 'border-slate-200', text: 'text-slate-700' },
 };
 
 const SectionBadge = ({ text }) => (
@@ -62,10 +62,10 @@ const SectionBadge = ({ text }) => (
     </div>
 );
 
-const SectionHeading = ({ title, subtitle }) => (
+const SectionHeading = ({ title, subtitle, light = true }) => (
     <div className="text-center mb-10 space-y-3">
-        <h2 className="text-2xl md:text-4xl font-black text-white tracking-tight">{title}</h2>
-        {subtitle && <p className="text-blue-100 text-sm md:text-base max-w-2xl mx-auto">{subtitle}</p>}
+        <h2 className={`text-2xl md:text-4xl font-black tracking-tight ${light ? 'text-slate-900' : 'text-white'}`}>{title}</h2>
+        {subtitle && <p className={`text-sm md:text-base max-w-2xl mx-auto ${light ? 'text-slate-500' : 'text-blue-100'}`}>{subtitle}</p>}
     </div>
 );
 
@@ -96,7 +96,7 @@ const LandingPage = () => {
     const row2Steps = workflowSteps.slice(5, 9);
 
     return (
-        <div className="min-h-screen bg-[#020617] text-slate-100 font-sans scroll-smooth overflow-x-hidden relative">
+        <div className="min-h-screen bg-[#EBF2F6] text-slate-900 font-sans scroll-smooth overflow-x-hidden relative">
             {/* Background Effects */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none"></div>
 
@@ -158,7 +158,7 @@ const LandingPage = () => {
             </header>
 
             {/* ═══════════ HERO SECTION ═══════════ */}
-            <section className="pt-32 pb-10 relative overflow-hidden px-4 sm:px-6 text-center">
+            <section className="pt-32 pb-10 relative overflow-hidden px-4 sm:px-6 text-center bg-[#020617]">
                 <div className="max-w-6xl mx-auto relative z-10 space-y-4">
                     <motion.div animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
                         className="landing-section-badge inline-flex items-center space-x-2 text-xs px-4 py-2 rounded-full font-bold uppercase tracking-wider shadow-sm">
@@ -224,7 +224,7 @@ const LandingPage = () => {
             </section>
 
             {/* ═══════════ BUSINESS WORKFLOW TIMELINE ═══════════ */}
-            <section id="workflow" className="py-16 bg-[#06091d]/40 border-y border-white/5 px-4 sm:px-6">
+            <section id="workflow" className="py-16 bg-white border-y border-slate-200 px-4 sm:px-6">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-6"><SectionBadge text="Operational Workflow" /></div>
                     <SectionHeading title="Complete Business Lifecycle" subtitle="From the first customer inquiry to AMC renewal — every step of your cleaning operations, digitized and automated." />
@@ -304,7 +304,7 @@ const LandingPage = () => {
             </section>
 
             {/* ═══════════ OPERATIONAL UI PREVIEWS (CRM & SCHEDULER) ═══════════ */}
-            <section id="scheduling" className="py-16 bg-[#06091d]/40 border-y border-white/5 px-4 sm:px-6">
+            <section id="scheduling" className="py-16 bg-white border-y border-slate-200 px-4 sm:px-6">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-6"><SectionBadge text="Live Operations Interface" /></div>
                     <SectionHeading title="Centralized Operations Dashboard" subtitle="Stop using Excel and WhatsApp. Manage your entire CRM pipeline and daily technician dispatching from one real-time interface." />
@@ -452,7 +452,7 @@ const LandingPage = () => {
             </section>
 
             {/* ═══════════ CORE OPERATIONAL MODULES ═══════════ */}
-            <section id="modules" className="py-16 bg-[#06091d]/40 border-y border-white/5 px-4 sm:px-6">
+            <section id="modules" className="py-16 bg-slate-50 border-y border-slate-200 px-4 sm:px-6">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-6"><SectionBadge text="Core Operational Modules" /></div>
                     <SectionHeading title="Operational Tools Used Across Daily Cleaning Workflows" subtitle="Every module designed for real cleaning business workflows — not generic software features." />
@@ -505,7 +505,7 @@ const LandingPage = () => {
             </section>
 
             {/* ═══════════ OPERATIONAL COMMUNICATION & TRACKING ═══════════ */}
-            <section id="approvals" className="py-16 bg-[#06091d]/40 border-y border-white/5 px-4 sm:px-6">
+            <section id="approvals" className="py-16 bg-white border-y border-slate-200 px-4 sm:px-6">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-6"><SectionBadge text="Paperless Workflows" /></div>
                     <SectionHeading title="Complete Communication Tracking" subtitle="Monitor quotation, contract and invoice communication history in one centralized workflow." />
@@ -540,7 +540,7 @@ const LandingPage = () => {
             </section>
 
             {/* ═══════════ MOBILE FIELD OPERATIONS ═══════════ */}
-            <section id="mobile" className="py-16 bg-[#06091d]/40 border-y border-white/5 px-4 sm:px-6">
+            <section id="mobile" className="py-16 bg-slate-50 border-y border-slate-200 px-4 sm:px-6">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-6"><SectionBadge text="Field Operations" /></div>
                     <SectionHeading title="Mobile-First Field Operations" subtitle="Technicians manage their entire workday from a mobile-optimized dashboard — no paper, no calls, no confusion." />
@@ -574,11 +574,11 @@ const LandingPage = () => {
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                         {['Digital Quotations', 'E-Contracts', 'PDF Generation', 'Online Approvals', 'Photo Proof', 'Document Hub'].map((label, i) => (
                             <motion.div key={i} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: i * 0.05 }}
-                                className="bg-white/[0.02] border border-white/[0.06] rounded-xl p-4 text-center hover:border-indigo-500/30 hover:bg-white/[0.04] transition group">
-                                <div className="w-10 h-10 mx-auto mb-3 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
-                                    <FaCheckCircle className="text-indigo-400 text-sm" />
+                                className="bg-white border border-slate-200 rounded-xl p-4 text-center hover:border-blue-400 hover:shadow-md transition duration-300 group shadow-sm">
+                                <div className="w-10 h-10 mx-auto mb-3 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center">
+                                    <FaCheckCircle className="text-blue-600 text-sm" />
                                 </div>
-                                <span className="text-xs font-bold text-slate-300">{label}</span>
+                                <span className="text-xs font-bold text-slate-800">{label}</span>
                             </motion.div>
                         ))}
                     </div>
@@ -586,18 +586,20 @@ const LandingPage = () => {
             </section>
 
             {/* ═══════════ ROLE-BASED DASHBOARDS ═══════════ */}
-            <section id="operations" className="py-16 bg-[#06091d]/40 border-y border-white/5 px-4 sm:px-6">
+            <section id="operations" className="py-16 bg-white border-y border-slate-200 px-4 sm:px-6">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-6"><SectionBadge text="Operational Team Access" /></div>
                     <SectionHeading title="Specialized Dashboards for Every Role" subtitle="Every team member sees exactly what they need — nothing more, nothing less." />
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         {roleCards.map((card, i) => {
-                            const c = colorMap[card.color] || colorMap.blue;
+                            const c = lightColorMap[card.color] || lightColorMap.blue;
                             return (
                                 <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }}
-                                    className={`bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5 hover:border-white/[0.12] transition-all hover:-translate-y-1`}>
-                                    <div className={`inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-black ${c.bg} ${c.text} border ${c.border} mb-3`}>{card.title}</div>
-                                    <p className="text-slate-400 text-sm">{card.desc}</p>
+                                    className="bg-white border border-slate-200 rounded-2xl p-5 hover:border-blue-400 transition-all duration-300 hover:-translate-y-1 hover:shadow-md group shadow-sm flex flex-col justify-between">
+                                    <div>
+                                        <div className={`inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold ${c.bg} ${c.text} border ${c.border} mb-3`}>{card.title}</div>
+                                        <p className="text-slate-600 text-sm leading-relaxed">{card.desc}</p>
+                                    </div>
                                 </motion.div>
                             );
                         })}
@@ -613,14 +615,14 @@ const LandingPage = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {problemsSolved.map((item, i) => (
                             <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }}
-                                className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6 hover:border-emerald-500/20 transition-all group">
+                                className="bg-white border border-slate-200 rounded-2xl p-6 hover:border-emerald-400 hover:shadow-md transition-all duration-300 group shadow-sm">
                                 <div className="flex items-start space-x-3 mb-4">
-                                    <FaTimesCircle className="text-rose-400/60 mt-0.5 shrink-0" />
-                                    <span className="text-sm text-rose-300/80 font-semibold line-through decoration-rose-500/30">{item.problem}</span>
+                                    <FaTimesCircle className="text-red-600 mt-0.5 shrink-0" />
+                                    <span className="text-sm text-red-700 font-semibold line-through decoration-red-400/50">{item.problem}</span>
                                 </div>
                                 <div className="flex items-start space-x-3">
-                                    <FaCheckCircle className="text-emerald-400 mt-0.5 shrink-0" />
-                                    <span className="text-sm text-slate-300 font-medium">{item.solution}</span>
+                                    <FaCheckCircle className="text-emerald-600 mt-0.5 shrink-0" />
+                                    <span className="text-sm text-slate-800 font-medium">{item.solution}</span>
                                 </div>
                             </motion.div>
                         ))}
@@ -629,15 +631,15 @@ const LandingPage = () => {
             </section>
 
             {/* ═══════════ WHY CHOOSE US ═══════════ */}
-            <section className="py-16 bg-[#06091d]/40 border-y border-white/5 px-4 sm:px-6">
+            <section className="py-16 bg-white border-y border-slate-200 px-4 sm:px-6">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-6"><SectionBadge text="Our Standards" /></div>
                     <SectionHeading title="Why Businesses Choose Team Enviro" subtitle="A trusted name in UAE commercial cleaning and facility management." />
                     <div className="flex flex-wrap justify-center gap-4">
                         {trustBadges.map((badge, i) => (
-                            <div key={i} className="flex flex-col items-center justify-center space-y-3 bg-white/[0.02] border border-white/[0.06] rounded-2xl py-6 w-[150px] sm:w-[160px] hover:bg-white/[0.05] hover:border-emerald-500/20 transition-all shadow-sm">
-                                <span className="text-emerald-400 text-2xl">{iconLookup[badge.icon] || <FaCheckCircle />}</span>
-                                <span className="text-[11px] sm:text-xs font-bold text-slate-300 text-center px-2">{badge.label}</span>
+                            <div key={i} className="flex flex-col items-center justify-center space-y-3 bg-white border border-slate-200 rounded-2xl py-6 w-[150px] sm:w-[160px] hover:border-emerald-400 hover:shadow-md transition-all duration-300 shadow-sm">
+                                <span className="text-emerald-600 text-2xl">{iconLookup[badge.icon] || <FaCheckCircle />}</span>
+                                <span className="text-[11px] sm:text-xs font-bold text-slate-800 text-center px-2">{badge.label}</span>
                             </div>
                         ))}
                     </div>
@@ -648,18 +650,18 @@ const LandingPage = () => {
             <section className="py-16 border-y border-white/5 bg-[#020617] px-4 sm:px-6">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-6"><SectionBadge text="Professional Services" /></div>
-                    <SectionHeading title="Services We Provide" subtitle="Comprehensive facility and cleaning solutions tailored to your operational needs." />
+                    <SectionHeading title="Services We Provide" subtitle="Comprehensive facility and cleaning solutions tailored to your operational needs." light={false} />
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         {servicesWeProvide.map((srv, i) => (
                             <motion.div key={i} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
-                                className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5 hover:border-emerald-500/30 transition-all group shadow-sm flex flex-col h-full">
-                                <div className="w-12 h-12 mb-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
-                                    <span className="text-emerald-400 text-xl">{iconLookup[srv.icon] || <FaBroom />}</span>
+                                className="bg-white border border-slate-200 rounded-2xl p-5 hover:border-emerald-400 hover:shadow-md transition-all duration-300 group shadow-sm flex flex-col h-full">
+                                <div className="w-12 h-12 mb-4 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center shrink-0">
+                                    <span className="text-emerald-600 text-xl">{iconLookup[srv.icon] || <FaBroom />}</span>
                                 </div>
-                                <h3 className="text-[15px] font-black text-white mb-2">{srv.title}</h3>
-                                <p className="text-slate-400 text-xs leading-relaxed flex-grow">{srv.desc}</p>
-                                <div className="mt-4 pt-4 border-t border-white/5 flex items-center space-x-2 text-[10px] text-slate-500 font-bold uppercase tracking-wider">
-                                    <FaCalendarCheck className="text-emerald-500/50" />
+                                <h3 className="text-[15px] font-bold text-slate-900 mb-2">{srv.title}</h3>
+                                <p className="text-slate-605 text-xs leading-relaxed flex-grow">{srv.desc}</p>
+                                <div className="mt-4 pt-4 border-t border-slate-200 flex items-center space-x-2 text-[10px] text-slate-500 font-bold uppercase tracking-wider">
+                                    <FaCalendarCheck className="text-emerald-600" />
                                     <span>{srv.freq}</span>
                                 </div>
                             </motion.div>
@@ -667,40 +669,39 @@ const LandingPage = () => {
                     </div>
                 </div>
             </section>
-
             {/* ═══════════ SERVICE INQUIRY FORM ═══════════ */}
             <section id="contact" className="py-16 px-4 sm:px-6 relative">
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-600/5 to-transparent pointer-events-none"></div>
                 <div className="max-w-4xl mx-auto relative z-10">
                     <div className="text-center space-y-6 mb-12">
-                        <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight">Request a <br /><span className="text-white">Site Inspection</span></h2>
-                        <p className="text-slate-400 text-base md:text-lg max-w-2xl mx-auto">Need professional cleaning services or an Annual Maintenance Contract (AMC)? Fill out the form below and our operations team will contact you shortly.</p>
+                        <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight">Request a <br /><span className="text-slate-900">Site Inspection</span></h2>
+                        <p className="text-slate-500 text-base md:text-lg max-w-2xl mx-auto">Need professional cleaning services or an Annual Maintenance Contract (AMC)? Fill out the form below and our operations team will contact you shortly.</p>
                     </div>
 
-                    <div className="bg-[#0B1120] border border-white/[0.08] rounded-3xl p-6 sm:p-10 shadow-2xl">
-                        <form className="space-y-6 text-sm" onSubmit={(e) => { e.preventDefault(); alert('Inquiry Sent Successfully! Our operations team will contact you soon.'); }}>
+                    <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-lg">
+                        <form className="landing-form space-y-6 text-sm" onSubmit={(e) => { e.preventDefault(); alert('Inquiry Sent Successfully! Our operations team will contact you soon.'); }}>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label className="font-bold text-slate-300">Full Name *</label>
-                                    <input type="text" required placeholder="John Doe" className="w-full bg-[#020617] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition" />
+                                    <label className="font-bold text-slate-500">Full Name *</label>
+                                    <input type="text" required placeholder="John Doe" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:border-blue-500 focus:bg-white transition" />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="font-bold text-slate-300">Phone Number *</label>
-                                    <input type="tel" required placeholder="+971 50 123 4567" className="w-full bg-[#020617] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition" />
+                                    <label className="font-bold text-slate-500">Phone Number *</label>
+                                    <input type="tel" required placeholder="+971 50 123 4567" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:border-blue-500 focus:bg-white transition" />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="font-bold text-slate-300">Email Address</label>
-                                    <input type="email" placeholder="john@example.com" className="w-full bg-[#020617] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition" />
+                                    <label className="font-bold text-slate-500">Email Address</label>
+                                    <input type="email" placeholder="john@example.com" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:border-blue-500 focus:bg-white transition" />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="font-bold text-slate-300">Site Location (Area/City) *</label>
-                                    <input type="text" required placeholder="e.g. Business Bay, Dubai" className="w-full bg-[#020617] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition" />
+                                    <label className="font-bold text-slate-500">Site Location (Area/City) *</label>
+                                    <input type="text" required placeholder="e.g. Business Bay, Dubai" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:border-blue-500 focus:bg-white transition" />
                                 </div>
                             </div>
 
                             <div className="space-y-2">
-                                <label className="font-bold text-slate-300">Service Required *</label>
-                                <select required className="w-full bg-[#020617] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition [&>option]:bg-[#020617]">
+                                <label className="font-bold text-slate-500">Service Required *</label>
+                                <select required className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:border-blue-500 focus:bg-white transition [&>option]:bg-white">
                                     <option value="">Select Service Type...</option>
                                     <option value="commercial">Commercial Office Cleaning</option>
                                     <option value="residential">Residential Deep Cleaning</option>
@@ -709,17 +710,17 @@ const LandingPage = () => {
                                 </select>
                             </div>
 
-                            <div className="flex items-center space-x-3 p-4 bg-white/5 border border-white/10 rounded-xl">
-                                <input type="checkbox" id="amc-inquiry" className="w-5 h-5 rounded border-white/20 bg-[#020617] text-emerald-500 focus:ring-emerald-500/30 cursor-pointer" />
-                                <label htmlFor="amc-inquiry" className="font-semibold text-slate-300 cursor-pointer">I am interested in an Annual Maintenance Contract (AMC)</label>
+                            <div className="flex items-center space-x-3 p-4 bg-slate-50 border border-slate-200 rounded-xl">
+                                <input type="checkbox" id="amc-inquiry" className="w-5 h-5 rounded border-slate-250 bg-white text-blue-600 focus:ring-blue-500/30 cursor-pointer" />
+                                <label htmlFor="amc-inquiry" className="font-semibold text-slate-500 cursor-pointer">I am interested in an Annual Maintenance Contract (AMC)</label>
                             </div>
 
                             <div className="space-y-2">
-                                <label className="font-bold text-slate-300">Additional Details</label>
-                                <textarea rows="4" placeholder="Tell us more about your requirements or preferred visit date..." className="w-full bg-[#020617] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition"></textarea>
+                                <label className="font-bold text-slate-500">Additional Details</label>
+                                <textarea rows="4" placeholder="Tell us more about your requirements or preferred visit date..." className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:border-blue-500 focus:bg-white transition"></textarea>
                             </div>
 
-                            <button type="submit" className="w-full py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold rounded-xl shadow-xl shadow-emerald-500/20 hover:from-emerald-500 hover:to-teal-500 active:scale-[0.99] transition-all text-base flex items-center justify-center space-x-2">
+                            <button type="submit" className="w-full py-4 bg-blue-600 text-white font-bold rounded-xl shadow-lg hover:bg-blue-700 active:scale-[0.99] transition-all text-base flex items-center justify-center space-x-2 border border-blue-700">
                                 <span>Submit Inspection Request</span><FaPaperPlane className="text-sm" />
                             </button>
                         </form>
@@ -732,46 +733,43 @@ const LandingPage = () => {
                 <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-12 gap-8 sm:gap-12 pb-16">
                     <div className="col-span-2 md:col-span-4 space-y-4">
                         <div className="flex items-center space-x-2.5">
-                            <img src="/images/team-enviro-logo.png" alt="Team Enviro Logo" className="h-7 object-contain" />
-                            <span className="font-black text-lg text-white">Team Enviro</span>
+                            <span className="font-bold text-lg text-white">Team Enviro</span>
                         </div>
-                        <p className="text-slate-400 text-sm max-w-sm leading-relaxed">Professional cleaning operations management system — CRM, quotations, AMC contracts, scheduling, invoicing and field management.</p>
+                        <p className="text-blue-100 text-sm max-w-sm leading-relaxed">Professional cleaning operations management system — CRM, quotations, AMC contracts, scheduling, invoicing and field management.</p>
                         <div className="flex space-x-4 pt-2">
-                            <a href="#whatsapp" aria-label="WhatsApp" className="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition"><FaWhatsapp /></a>
-                            <a href="#email" aria-label="Email" className="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition"><FaEnvelope /></a>
-                            <a href="#linkedin" aria-label="LinkedIn" className="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition"><FaLinkedin /></a>
+                            <a href="#whatsapp" aria-label="WhatsApp" className="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 hover:bg-white/10 text-blue-100 hover:text-white transition"><FaWhatsapp /></a>
+                            <a href="#email" aria-label="Email" className="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 hover:bg-white/10 text-blue-100 hover:text-white transition"><FaEnvelope /></a>
+                            <a href="#linkedin" aria-label="LinkedIn" className="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 hover:bg-white/10 text-blue-100 hover:text-white transition"><FaLinkedin /></a>
                         </div>
-                        <p className="text-[11px] text-slate-500 pt-2 whitespace-nowrap">&copy; {new Date().getFullYear()} Team Enviro Cleaning Services. All rights reserved.</p>
+                        <p className="text-[11px] text-blue-100/70 pt-2 whitespace-nowrap">&copy; {new Date().getFullYear()} Team Enviro Cleaning Services. All rights reserved.</p>
                     </div>
                     <div className="md:col-span-2 space-y-3">
                         <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4">Customer Operations</h4>
-                        <ul className="space-y-2.5 text-sm text-slate-400">
+                        <ul className="space-y-2.5 text-sm text-blue-100">
                             <li>Lead Management</li><li>Client Directory</li><li>Quotation Builder</li><li>Sales Pipeline</li>
                         </ul>
                     </div>
                     <div className="md:col-span-2 space-y-3">
                         <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4">AMC Operations</h4>
-                        <ul className="space-y-2.5 text-sm text-slate-400">
+                        <ul className="space-y-2.5 text-sm text-blue-100">
                             <li>Contract Lifecycle</li><li>Visit Scheduling</li><li>Renewal Tracking</li><li>Service Records</li>
                         </ul>
                     </div>
                     <div className="md:col-span-2 space-y-3">
                         <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4">Field Operations</h4>
-                        <ul className="space-y-2.5 text-sm text-slate-400">
+                        <ul className="space-y-2.5 text-sm text-blue-100">
                             <li>Mobile Dashboard</li><li>Digital Signatures</li><li>Photo Evidence</li><li>Job Checklists</li>
                         </ul>
                     </div>
                     <div className="md:col-span-2 space-y-3">
                         <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4">Company</h4>
-                        <ul className="space-y-2.5 text-sm text-slate-400">
-                            <li><a href="#contact" className="hover:text-white transition">Request Site Inspection</a></li>
+                        <ul className="space-y-2.5 text-sm text-blue-100">
+                            <li><a href="#contact" className="text-blue-100 hover:text-white transition">Request Site Inspection</a></li>
                             <li>UAE Operations</li>
                             <li>Support</li>
-
                         </ul>
                     </div>
                 </div>
-
             </footer>
         </div>
     );

@@ -932,3 +932,10 @@ header button.landing-btn-secondary * {
     margin: 0;
   }
 }
+
+/* Landing Page form inputs override to match gray-blue design */
+.landing-form input,
+.landing-form select,
+.landing-form textarea {
+  background-color: #F8FAFC !important;
+}
