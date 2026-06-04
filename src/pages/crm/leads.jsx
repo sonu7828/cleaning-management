@@ -93,7 +93,7 @@ const LeadsPage = () => {
                         <FaRegBuilding className="text-blue-500" />
                         CRM Pipeline & Lead Desk
                     </h1>
-                    <p className="text-slate-400 text-xs mt-1">Nurture client cleaning inquiries and track them along the conversion pipeline.</p>
+                    <p className="text-slate-600 text-xs mt-1">Nurture client cleaning inquiries and track them along the conversion pipeline.</p>
                 </div>
                 <button 
                     onClick={() => setIsAddOpen(true)}
@@ -134,9 +134,9 @@ const LeadsPage = () => {
                                         }`}
                                     >
                                         <div className="font-extrabold text-slate-800 line-clamp-1">{lead.name}</div>
-                                        <div className="text-[10px] text-slate-400 mt-1">Rep: <span className="text-slate-600 font-bold">{lead.contactPerson}</span></div>
-                                        <div className="text-[10px] text-slate-400 mt-0.5 mb-2 font-bold flex justify-between items-center">
-                                            <span>Source: {lead.source}</span>
+                                        <div className="text-[10px] text-slate-500 mt-1">Rep: <span className="text-slate-700 font-bold">{lead.contactPerson}</span></div>
+                                        <div className="text-[10px] text-slate-500 mt-0.5 mb-2 font-bold flex justify-between items-center">
+                                            <span>Source: <span className="text-slate-700">{lead.source}</span></span>
                                         </div>
                                         
                                         {/* Action footer */}
@@ -196,11 +196,11 @@ const LeadsPage = () => {
                                     <tr key={lead.id} onClick={() => setSelectedLead(lead)} className={`hover:bg-[#1E293B]/60 cursor-pointer transition-colors ${selectedLead?.id === lead.id ? 'bg-[#1E293B]' : ''}`}>
                                         <td className="py-3 px-2">
                                             <div className="font-bold text-slate-800 text-[13px]">{lead.name}</div>
-                                            <div className="text-[10px] text-slate-400 mt-0.5">Contact: {lead.contactPerson}</div>
+                                            <div className="text-[10px] text-slate-500 mt-0.5">Contact: <span className="text-slate-700 font-semibold">{lead.contactPerson}</span></div>
                                         </td>
                                         <td className="py-3 px-2">
-                                            <div className="font-bold text-slate-650">{lead.phone}</div>
-                                            <div className="text-[10px] text-slate-400 mt-0.5">{lead.email}</div>
+                                            <div className="font-bold text-slate-700">{lead.phone}</div>
+                                            <div className="text-[10px] text-slate-500 mt-0.5">{lead.email}</div>
                                         </td>
                                         <td className="py-3 px-2">
                                             <span className={`px-2 py-0.5 rounded text-[9px] font-black uppercase tracking-wider ${stageColors[lead.status] || stageColors['New Lead']}`}>
@@ -245,12 +245,12 @@ const LeadsPage = () => {
                             </div>
 
                             <div className="space-y-3 text-xs bg-[#1E293B] p-4 rounded-xl border border-white/5 text-slate-600">
-                                <div className="flex justify-between"><span className="text-slate-400 font-bold">Contact Person:</span> <span className="font-black text-slate-800">{selectedLead.contactPerson}</span></div>
-                                <div className="flex justify-between"><span className="text-slate-400 font-bold">Phone Number:</span> <span className="font-black text-slate-800">{selectedLead.phone}</span></div>
-                                <div className="flex justify-between"><span className="text-slate-400 font-bold">Email Address:</span> <span className="font-black text-slate-800">{selectedLead.email}</span></div>
-                                <div className="flex justify-between"><span className="text-slate-400 font-bold">Inquiry Source:</span> <span className="font-black text-slate-800">{selectedLead.source}</span></div>
+                                <div className="flex justify-between"><span className="text-slate-500 font-bold">Contact Person:</span> <span className="font-black text-slate-800">{selectedLead.contactPerson}</span></div>
+                                <div className="flex justify-between"><span className="text-slate-500 font-bold">Phone Number:</span> <span className="font-black text-slate-800">{selectedLead.phone}</span></div>
+                                <div className="flex justify-between"><span className="text-slate-500 font-bold">Email Address:</span> <span className="font-black text-slate-800">{selectedLead.email}</span></div>
+                                <div className="flex justify-between"><span className="text-slate-500 font-bold">Inquiry Source:</span> <span className="font-black text-slate-800">{selectedLead.source}</span></div>
                                 <div className="pt-3 mt-3 border-t border-white/5">
-                                    <span className="text-slate-400 font-bold block mb-1.5">Prospect Notes:</span>
+                                    <span className="text-slate-500 font-bold block mb-1.5">Prospect Notes:</span>
                                     <p className="text-slate-600 font-medium leading-relaxed text-[11px]">{selectedLead.notes || 'No initial notes provided.'}</p>
                                 </div>
                             </div>
@@ -261,10 +261,10 @@ const LeadsPage = () => {
                                 <div className="space-y-2 max-h-[160px] overflow-y-auto pr-1">
                                     {(selectedLead.followUps || []).map((follow, idx) => (
                                         <div key={idx} className="p-3 bg-[#1E293B] border border-white/5 rounded-xl text-[10px] space-y-1">
-                                            <div className="flex justify-between text-slate-400 font-bold">
+                                            <div className="flex justify-between text-slate-500 font-bold">
                                                 <span className="flex items-center gap-1.5"><FaCalendarDay className="text-blue-400/70" /> {follow.date}</span>
                                             </div>
-                                            <p className="text-slate-650 font-medium leading-relaxed">{follow.note}</p>
+                                            <p className="text-slate-700 font-medium leading-relaxed">{follow.note}</p>
                                         </div>
                                     ))}
                                     {(!selectedLead.followUps || selectedLead.followUps.length === 0) && (
