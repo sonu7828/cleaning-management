@@ -51,8 +51,8 @@ The application has been fully transformed from its initial Dark theme to a high
 * **Header & Text**: Gray-blue headers (`bg-slate-50` / `#EBF2F6`) and dark slate-900 text (`#1E293B`) for absolute legibility.
 * **Badges**: Updated to high-contrast light colors with deep dark text matching their status/trend dynamically (e.g. `In Progress` is `bg-blue-50 text-blue-700 border-blue-200`).
 
-### 5. Landing Page Theme Transformation & Footer Logo Removal
-* **Section Backgrounds**: Alternate between pure white (`bg-white`) and light gray-blue (`bg-slate-50` / `bg-[#EBF2F6]`) for section backdrops.
-* **Section Heading Contrast**: Dynamically switch text color based on section background using `light={true/false}` on `SectionHeading` (dark slate-900 / slate-500 on light backgrounds; white / blue-100 on Steel Blue backgrounds).
-* **Inquiry Form Inputs**: Custom gray-blue input styling `#F8FAFC` applied via `.landing-form` selector, with slate labels (`text-slate-500`) on white form card.
+### 5. Landing Page Brand Steel Blue Background & Card Contrast
+* **Brand Background**: The landing page page-base background remains the brand solid Steel Blue color (`bg-[#020617]` mapping to `#347AB7` via `globals.css` overrides) with darker semi-transparent navy overlays (`bg-[#06091d]/40`).
+* **High Contrast Cards**: All operational preview mockups, timeline steps, modules, role-based access grids, and inquiry forms are rendered on pure white cards (`bg-white border border-slate-200 shadow-sm`) with 4px borders for maximum readability and flat visual layout contrast.
+* **Section Heading Contrast**: Section headings render in high-contrast white title and light-blue (`text-blue-100`) subtitles to ensure absolute readability on the solid blue page backdrop.
 * **Footer Logo**: Branding logo image removed from footer; high-contrast white footer title "Team Enviro" and light-blue links (`text-blue-100`) preserved on Steel Blue background.
