@@ -34,12 +34,8 @@ const RoleCard = ({
                 group relative flex flex-col items-center justify-center
                 px-1.5 py-2 sm:p-3
                 rounded-xl
-                bg-white/[0.02]
-                border ${borderColor}
-                ${hoverBg} ${hoverBorder}
+                premium-role-card
                 text-center
-                transition-all duration-300
-                shadow-lg ${shadowColor}
                 disabled:opacity-40 disabled:cursor-not-allowed
                 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/50 focus-visible:ring-offset-1 focus-visible:ring-offset-transparent
                 min-h-[4.2rem] sm:min-h-[5rem]
@@ -51,23 +47,14 @@ const RoleCard = ({
         >
             {/* Icon Container */}
             <div
-                className={`
-                    w-6 h-6 sm:w-8 sm:h-8
-                    rounded-lg
-                    ${iconBg}
-                    flex items-center justify-center
-                    mx-auto mb-1
-                    ${iconColor}
-                    transition-colors duration-300
-                    group-hover:scale-110
-                `.trim()}
+                className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center mx-auto mb-1 transition-colors duration-300 group-hover:scale-110 role-card-icon"
                 aria-hidden="true"
             >
                 {icon}
             </div>
 
             {/* Title */}
-            <span className="text-[8px] sm:text-[9.5px] font-black text-white/80 uppercase tracking-wider block leading-tight whitespace-normal break-words w-full px-0.5">
+            <span className="text-[8px] sm:text-[9.5px] font-black uppercase tracking-wider block leading-tight whitespace-normal break-words w-full px-0.5">
                 {title}
             </span>
 

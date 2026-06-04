@@ -29,7 +29,7 @@ const FormInput = ({
             {label && (
                 <label
                     htmlFor={inputId}
-                    className="block text-[9px] sm:text-[10px] font-black text-white/50 uppercase tracking-[0.2em] ml-1 select-none"
+                    className="block text-[10px] sm:text-xs font-bold uppercase tracking-wider ml-1 select-none login-label-white"
                 >
                     {label}
                     {required && (
@@ -43,9 +43,8 @@ const FormInput = ({
                 {/* Leading Icon */}
                 {Icon && (
                     <span
-                        className={`absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none transition-colors duration-300 z-10 ${
-                            isFocused ? 'text-blue-400' : error ? 'text-rose-400' : 'text-white'
-                        }`}
+                        className={`absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none transition-colors duration-300 z-10 ${isFocused ? 'text-blue-500' : error ? 'text-rose-400' : 'text-slate-400'
+                            }`}
                         aria-hidden="true"
                     >
                         <Icon className="text-xs" />
@@ -91,7 +90,7 @@ const FormInput = ({
                     <button
                         type="button"
                         onClick={onTrailingIconClick}
-                        className="absolute inset-y-0 right-0 pr-4 flex items-center text-white hover:text-slate-200 focus:text-blue-400 focus:outline-none transition-colors duration-200 z-10"
+                        className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-650 focus:text-blue-500 focus:outline-none transition-colors duration-200 z-10"
                         aria-label={trailingIconAriaLabel || 'Toggle'}
                         tabIndex={0}
                     >
