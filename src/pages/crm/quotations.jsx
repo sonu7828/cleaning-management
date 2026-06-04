@@ -257,23 +257,23 @@ const QuotationsPage = () => {
             {!showForm && (
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-3.5">
                     <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-                        <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Total Estimates</div>
+                        <div className="text-[10px] text-slate-700 font-bold uppercase tracking-wider">Total Estimates</div>
                         <div className="text-lg font-black text-slate-800 mt-1">{totalQuotes}</div>
                     </div>
                     <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-                        <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider text-blue-500">Pending Quotes</div>
+                        <div className="text-[10px] text-blue-700 font-bold uppercase tracking-wider">Pending Quotes</div>
                         <div className="text-lg font-black text-blue-600 mt-1">{pendingQuotes}</div>
                     </div>
                     <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-                        <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider text-emerald-500">Approved Quotes</div>
+                        <div className="text-[10px] text-emerald-700 font-bold uppercase tracking-wider">Approved Quotes</div>
                         <div className="text-lg font-black text-emerald-600 mt-1">{approvedQuotes}</div>
                     </div>
                     <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-                        <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider text-rose-500">Rejected Quotes</div>
+                        <div className="text-[10px] text-rose-700 font-bold uppercase tracking-wider">Rejected Quotes</div>
                         <div className="text-lg font-black text-rose-600 mt-1">{rejectedQuotes}</div>
                     </div>
                     <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-                        <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider text-amber-500">Expired Quotes</div>
+                        <div className="text-[10px] text-amber-700 font-bold uppercase tracking-wider">Expired Quotes</div>
                         <div className="text-lg font-black text-amber-600 mt-1">{expiredQuotes}</div>
                     </div>
                 </div>

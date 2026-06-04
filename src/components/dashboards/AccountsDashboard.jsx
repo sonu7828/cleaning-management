@@ -44,20 +44,20 @@ const AccountsDashboard = () => {
     ];
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 text-slate-800">
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-3xl font-black text-white tracking-tight flex items-center gap-2">
-                        <FaCalculator className="text-rose-500 animate-pulse" />
+                    <h1 className="text-3xl font-black text-slate-800 tracking-tight flex items-center gap-2">
+                        <FaCalculator className="text-rose-600 animate-pulse" />
                         Accounts & VAT Desk
                     </h1>
-                    <p className="text-slate-400 text-sm mt-0.5">Manage invoices, verify transaction logs, and calculate quarterly VAT returns.</p>
+                    <p className="text-slate-500 text-sm mt-0.5">Manage invoices, verify transaction logs, and calculate quarterly VAT returns.</p>
                 </div>
                 
                 <button
                     onClick={handleExportLedger}
-                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl shadow-md shadow-rose-600/10 hover:shadow-rose-700/20 active:scale-[0.98] transition-all text-sm"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl active:scale-[0.98] transition-all text-sm"
                 >
                     <FaDownload className="text-xs" />
                     Export Tax Ledger
@@ -74,39 +74,39 @@ const AccountsDashboard = () => {
             {/* Financial Stats Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 <div className="bg-[#111827]/85 border border-[#1E293B]/30 backdrop-blur-sm shadow-xl rounded-2xl p-5 space-y-2">
-                    <div className="flex items-center justify-between text-slate-400">
+                    <div className="flex items-center justify-between text-slate-600">
                         <span className="text-xs font-bold uppercase tracking-wider">Total Gross Invoiced</span>
-                        <FaFileInvoiceDollar className="text-blue-400 text-lg" />
+                        <FaFileInvoiceDollar className="text-blue-600 text-lg" />
                     </div>
-                    <div className="text-3xl font-black text-white">AED {totalBilled.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
-                    <div className="text-xs text-slate-400 font-medium">Billed across all agency accounts</div>
+                    <div className="text-3xl font-black text-slate-800">AED {totalBilled.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
+                    <div className="text-xs text-slate-500 font-medium">Billed across all agency accounts</div>
                 </div>
 
                 <div className="bg-[#111827]/85 border border-[#1E293B]/30 backdrop-blur-sm shadow-xl rounded-2xl p-5 space-y-2">
-                    <div className="flex items-center justify-between text-slate-400">
+                    <div className="flex items-center justify-between text-slate-600">
                         <span className="text-xs font-bold uppercase tracking-wider">Collections Received</span>
-                        <FaArrowUp className="text-emerald-400 text-lg" />
+                        <FaArrowUp className="text-emerald-600 text-lg" />
                     </div>
-                    <div className="text-3xl font-black text-emerald-400">AED {paidAmount.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
-                    <div className="text-xs text-slate-400 font-medium">Statefully marked paid invoices</div>
+                    <div className="text-3xl font-black text-emerald-600">AED {paidAmount.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
+                    <div className="text-xs text-slate-500 font-medium">Statefully marked paid invoices</div>
                 </div>
 
                 <div className="bg-[#111827]/85 border border-[#1E293B]/30 backdrop-blur-sm shadow-xl rounded-2xl p-5 space-y-2">
-                    <div className="flex items-center justify-between text-slate-400">
+                    <div className="flex items-center justify-between text-slate-600">
                         <span className="text-xs font-bold uppercase tracking-wider">Accounts Receivable</span>
-                        <FaArrowDown className="text-amber-400 text-lg" />
+                        <FaArrowDown className="text-amber-600 text-lg" />
                     </div>
-                    <div className="text-3xl font-black text-amber-400">AED {outstandingAmount.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
-                    <div className="text-xs text-slate-400 font-medium">Outstanding invoices pending</div>
+                    <div className="text-3xl font-black text-amber-600">AED {outstandingAmount.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
+                    <div className="text-xs text-slate-500 font-medium">Outstanding invoices pending</div>
                 </div>
 
                 <div className="bg-[#111827]/85 border border-[#1E293B]/30 backdrop-blur-sm shadow-xl rounded-2xl p-5 space-y-2">
-                    <div className="flex items-center justify-between text-slate-400">
+                    <div className="flex items-center justify-between text-slate-600">
                         <span className="text-xs font-bold uppercase tracking-wider">Quarterly VAT (5%)</span>
-                        <span className="text-[10px] bg-rose-500/10 text-rose-300 px-2 py-0.5 rounded-full font-bold border border-rose-500/20">Output Tax</span>
+                        <span className="text-[10px] bg-rose-100 text-rose-700 px-2 py-0.5 rounded-full font-bold border border-rose-200">Output Tax</span>
                     </div>
-                    <div className="text-3xl font-black text-white">AED {accumulatedVat.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
-                    <div className="text-xs text-slate-400 font-medium">Net profit: AED {netEarning.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
+                    <div className="text-3xl font-black text-slate-800">AED {accumulatedVat.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
+                    <div className="text-xs text-slate-500 font-medium">Net profit: AED {netEarning.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
                 </div>
             </div>
 
@@ -116,11 +116,11 @@ const AccountsDashboard = () => {
                 {/* 1. Cashflow Chart */}
                 <div className="lg:col-span-5 bg-[#111827]/85 border border-[#1E293B]/30 backdrop-blur-sm shadow-xl rounded-2xl p-5 space-y-4">
                     <div>
-                        <h3 className="text-lg font-bold text-white tracking-tight flex items-center gap-1.5">
-                            <FaChartLine className="text-slate-400" />
+                        <h3 className="text-lg font-bold text-slate-800 tracking-tight flex items-center gap-1.5">
+                            <FaChartLine className="text-slate-500" />
                             Financial Analytics
                         </h3>
-                        <p className="text-xs text-slate-400">Income vs. Logistics expenses breakdown.</p>
+                        <p className="text-xs text-slate-500">Income vs. Logistics expenses breakdown.</p>
                     </div>
 
                     <div className="w-full h-64 text-xs font-semibold">
@@ -140,14 +140,14 @@ const AccountsDashboard = () => {
                 {/* 2. Billing Invoices Control Table */}
                 <div className="lg:col-span-7 bg-[#111827]/85 border border-[#1E293B]/30 backdrop-blur-sm shadow-xl rounded-2xl p-5 space-y-4">
                     <div>
-                        <h3 className="text-lg font-bold text-white tracking-tight">Invoice Control Desk</h3>
-                        <p className="text-xs text-slate-400">Review billings and manually record client offline check payments.</p>
+                        <h3 className="text-lg font-bold text-slate-800 tracking-tight">Invoice Control Desk</h3>
+                        <p className="text-xs text-slate-500">Review billings and manually record client offline check payments.</p>
                     </div>
 
                     <div className="overflow-x-auto">
                         <table className="w-full text-left text-xs border-collapse">
                             <thead>
-                                <tr className="border-b border-[#1E293B]/30 text-slate-400 font-extrabold uppercase tracking-wider">
+                                <tr className="border-b border-[#1E293B]/30 text-slate-600 font-extrabold uppercase tracking-wider">
                                     <th className="py-3 px-2">Invoice Code</th>
                                     <th className="py-3 px-2">B2B Client</th>
                                     <th className="py-3 px-2">Amount Due</th>
@@ -156,20 +156,20 @@ const AccountsDashboard = () => {
                                     <th className="py-3 px-2 text-right">Roster</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-[#1E293B]/20 font-medium text-slate-300">
+                            <tbody className="divide-y divide-[#1E293B]/20 font-medium text-slate-700">
                                 {invoices.map((inv) => (
-                                    <tr key={inv.id} className="hover:bg-white/5 transition">
+                                    <tr key={inv.id} className="hover:bg-slate-100 transition">
                                         <td className="py-3.5 px-2">
-                                            <div className="font-bold text-white">{inv.id}</div>
-                                            <div className="text-[9px] text-slate-400 mt-0.5">Issued: {inv.createdDate || inv.date}</div>
+                                            <div className="font-bold text-slate-800">{inv.id}</div>
+                                            <div className="text-[9px] text-slate-500 mt-0.5">Issued: {inv.createdDate || inv.date}</div>
                                         </td>
-                                        <td className="py-3.5 px-2 text-slate-300 font-semibold">{inv.customerName}</td>
-                                        <td className="py-3.5 px-2 font-extrabold text-white">AED {inv.amount.toFixed(2)}</td>
-                                        <td className="py-3.5 px-2 text-slate-400">{inv.dueDate}</td>
+                                        <td className="py-3.5 px-2 text-slate-700 font-semibold">{inv.customerName}</td>
+                                        <td className="py-3.5 px-2 font-extrabold text-slate-800">AED {inv.amount.toFixed(2)}</td>
+                                        <td className="py-3.5 px-2 text-slate-600">{inv.dueDate}</td>
                                         <td className="py-3.5 px-2">
                                             <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold ${
-                                                inv.status === 'Paid' ? 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/20' :
-                                                'bg-rose-500/10 text-rose-300 border border-rose-500/20'
+                                                inv.status === 'Paid' ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' :
+                                                'bg-rose-100 text-rose-800 border border-rose-200'
                                             }`}>
                                                 {inv.status}
                                             </span>
@@ -178,7 +178,7 @@ const AccountsDashboard = () => {
                                             {(inv.status === 'Sent' || inv.status === 'Pending' || inv.status === 'Overdue') && (
                                                 <button 
                                                     onClick={() => handleMarkAsPaid(inv.id)}
-                                                    className="inline-flex items-center gap-1 px-2 py-1 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 font-bold rounded-lg transition"
+                                                    className="inline-flex items-center gap-1 px-2 py-1 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-700 font-bold rounded-lg transition"
                                                     title="Mark as Paid"
                                                 >
                                                     <FaCheck className="text-[8px]" /> Mark Paid
