@@ -4,56 +4,47 @@ import { FaSearch, FaUserCircle, FaEllipsisH, FaBell, FaSignOutAlt, FaUser, FaCh
 import { motion, AnimatePresence } from 'framer-motion';
 import { AppContext } from '../../context/AppContext';
 
-// Map routes to breadcrumb labels
 const routeLabels = {
-    '/dashboard': 'Dashboard',
-    '/analytics': 'Analytics',
-    '/crm/clients': 'Clients',
-    '/crm/leads': 'Leads',
-    '/crm/quotations': 'Quotations',
+    '/crm/clients': 'Customers',
+    '/crm/leads': 'Leads Pipeline',
+    '/crm/quotations': 'Quotations Board',
     '/crm/contracts': 'AMC Contracts',
-    '/crm/scheduler': 'Scheduler',
+    '/crm/scheduling': 'Scheduling Calendar',
+    '/crm/work-orders': 'Work Orders / Dispatch',
     '/crm/technicians': 'Technicians',
     '/crm/drivers': 'Drivers',
-    '/crm/reports': 'Reports',
-    '/erp/invoices': 'Invoices',
-    '/erp/operations': 'Daily Jobs',
-    '/erp/payments': 'Payments',
-    '/profile': 'My Profile',
-    '/notifications': 'Notifications',
-    '/settings': 'Settings',
-    '/superadmin/companies': 'Companies',
-    '/superadmin/users': 'User Management',
-    '/superadmin/plans': 'Subscription Plans',
-    '/superadmin/analytics': 'SaaS Analytics',
-    '/superadmin/reports': 'Platform Reports',
-    '/superadmin/logs': 'Activity Logs',
-    '/technician/schedule': 'My Schedule',
-    '/technician/history': 'Work History',
-    '/technician/attendance': 'Attendance',
-    '/driver/routes': 'Routes',
-    '/driver/reimbursements': 'Petty Cash',
-    '/driver/collections': 'Collections',
-    '/accounts/vat': 'VAT / Tax',
-    '/accounts/transactions': 'Transactions',
-    '/accounts/reports': 'Financial Reports',
-    '/client/contracts': 'My Contracts',
-    '/client/billings': 'My Invoices',
-    '/client/complaints': 'Support Tickets',
-    '/client/history': 'Service History',
+    '/crm/invoices': 'Invoices Desk',
+    '/crm/payments': 'Payments',
+    '/crm/vat': 'FTA VAT Returns',
+    '/crm/reports': 'Reports & Analytics',
+    '/settings': 'System Settings',
+    '/profile': 'My Profile'
 };
 
 const Topbar = ({ onMenuClick }) => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { userRole, user, logout } = useContext(AppContext);
+    const { userRole, user, logout, notifications } = useContext(AppContext);
     const [searchQuery, setSearchQuery] = useState('');
     const [profileOpen, setProfileOpen] = useState(false);
     const profileRef = useRef(null);
 
-    const currentPageLabel = routeLabels[location.pathname] || 'Operations Console';
+    const getDashboardLabel = () => {
+        switch (userRole) {
+            case 'admin': return 'Admin Dashboard';
+            case 'sales': return 'Sales Hub';
+            case 'dispatch': return 'Dispatch Desk';
+            case 'technician': return 'Service Hub';
+            case 'accounts': return 'Accounts Desk';
+            case 'driver': return 'Logistics Hub';
+            default: return 'Admin Dashboard';
+        }
+    };
 
-    // Close dropdown on outside click
+    const currentPageLabel = location.pathname === '/dashboard' 
+        ? getDashboardLabel() 
+        : (routeLabels[location.pathname] || 'Admin Dashboard');
+
     useEffect(() => {
         const handleClickOutside = (e) => {
             if (profileRef.current && !profileRef.current.contains(e.target)) {
@@ -66,9 +57,6 @@ const Topbar = ({ onMenuClick }) => {
 
     const handleSearch = (event) => {
         event.preventDefault();
-        if (searchQuery.trim()) {
-            console.log('Search query:', searchQuery);
-        }
     };
 
     const handleLogout = () => {
@@ -84,42 +72,44 @@ const Topbar = ({ onMenuClick }) => {
 
     const getRoleColor = () => {
         switch (userRole) {
-            case 'superadmin': return 'text-purple-400';
-            case 'admin': return 'text-blue-400';
-            case 'technician': return 'text-amber-400';
-            case 'driver': return 'text-emerald-400';
-            case 'accounts': return 'text-rose-400';
-            case 'client': return 'text-cyan-400';
-            default: return 'text-blue-400';
+            case 'admin': return 'text-purple-600';
+            case 'sales': return 'text-blue-600';
+            case 'dispatch': return 'text-emerald-600';
+            case 'technician': return 'text-amber-600';
+            case 'accounts': return 'text-rose-600';
+            case 'driver': return 'text-indigo-600';
+            default: return 'text-slate-600';
         }
     };
 
     const getRoleBadgeColor = () => {
         switch (userRole) {
-            case 'superadmin': return 'bg-purple-500/10 text-purple-300 border-purple-500/20';
-            case 'technician': return 'bg-amber-500/10 text-amber-300 border-amber-500/20';
-            case 'driver': return 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20';
-            case 'accounts': return 'bg-rose-500/10 text-rose-300 border-rose-500/20';
-            case 'client': return 'bg-cyan-500/10 text-cyan-300 border-cyan-500/20';
-            default: return 'bg-blue-500/10 text-blue-300 border-blue-500/20';
+            case 'admin': return 'bg-purple-50 text-purple-600 border-purple-100';
+            case 'sales': return 'bg-blue-50 text-blue-600 border-blue-100';
+            case 'dispatch': return 'bg-emerald-50 text-emerald-600 border-emerald-100';
+            case 'technician': return 'bg-amber-50 text-amber-600 border-amber-100';
+            case 'accounts': return 'bg-rose-50 text-rose-600 border-rose-100';
+            case 'driver': return 'bg-indigo-50 text-indigo-600 border-indigo-100';
+            default: return 'bg-slate-50 text-slate-600 border-slate-100';
         }
     };
 
     const getRoleLabel = () => {
         switch (userRole) {
-            case 'superadmin': return 'Super Admin';
-            case 'technician': return 'Technician';
-            case 'driver': return 'Driver Squad';
-            case 'accounts': return 'Accounts Dept.';
-            case 'client': return 'Client Portal';
-            default: return 'Operations Admin';
+            case 'admin': return 'Administrator';
+            case 'sales': return 'Sales Team';
+            case 'dispatch': return 'Dispatch Operations';
+            case 'technician': return 'Cleaning Technician';
+            case 'accounts': return 'Accounts Desk';
+            case 'driver': return 'Logistics Driver';
+            default: return 'User';
         }
     };
 
     return (
-        <header className="sticky top-0 z-30 flex items-center justify-between px-4 sm:px-6 py-4 bg-[#020617]/75 backdrop-blur-xl border-b border-white/5 shadow-sm gap-4">
+        <header className="relative z-50 flex-shrink-0 flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4 bg-[#0B1120]/80 backdrop-blur-md border-b border-white/5 shadow-lg gap-4">
             {/* Left: Mobile Menu Trigger + Breadcrumb */}
-            <div className="flex items-center gap-4 min-w-0">
+            <div className="flex items-center gap-3 sm:gap-4 min-w-0">
                 {/* Mobile Menu Hamburger */}
                 <motion.button
                     onClick={onMenuClick}
@@ -127,40 +117,31 @@ const Topbar = ({ onMenuClick }) => {
                     whileTap={{ scale: 0.95 }}
                     aria-label="Open navigation menu"
                 >
-                    <FaEllipsisH className="text-lg" />
+                    <FaEllipsisH className="text-base" />
                 </motion.button>
-
+ 
                 <div className="flex flex-col min-w-0">
-                    <h1 className="text-base font-extrabold text-white tracking-tight truncate">{currentPageLabel}</h1>
-                    <span className={`text-[10px] font-black uppercase tracking-widest ${getRoleColor()}`}>
+                    <h1 className="text-sm sm:text-base font-black text-white tracking-tight truncate">{currentPageLabel}</h1>
+                    <span className={`hidden sm:block text-[9px] font-black uppercase tracking-widest ${getRoleColor()}`}>
                         {getRoleLabel()} Console
                     </span>
                 </div>
             </div>
 
-            {/* Right: Search + Global Dashboard Actions */}
+            {/* Right: Global Dashboard Actions */}
             <div className="flex items-center gap-3.5 shrink-0">
-                {/* Clean spotlight search bar */}
-                <form onSubmit={handleSearch} className="hidden sm:flex items-center relative group">
-                    <FaSearch className="absolute left-3.5 top-3 text-slate-500 text-xs transition group-focus-within:text-blue-400" />
-                    <input
-                        type="text"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder="Search workspace..."
-                        className="bg-[#0B1120] border border-white/5 rounded-xl pl-9 pr-4 py-2 text-xs text-white placeholder-slate-500 w-48 md:w-60 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/50 shadow-inner transition-all duration-300"
-                    />
-                </form>
 
                 {/* Notifications Link */}
                 <motion.button
                     onClick={() => navigate('/notifications')}
-                    className="relative p-2.5 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl border border-white/5 transition"
+                    className="relative p-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl border border-white/5 transition"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                 >
-                    <FaBell className="text-sm" />
-                    <span className="absolute top-2 right-2 w-2 h-2 bg-blue-500 rounded-full ring-2 ring-[#020617]"></span>
+                    <FaBell className="text-base" />
+                    {notifications && notifications.some(n => !n.read) && (
+                        <span className="absolute top-2 right-2 w-2 h-2 bg-blue-500 rounded-full ring-2 ring-[#020617] animate-pulse"></span>
+                    )}
                 </motion.button>
 
                 {/* Profile Dropdown */}
@@ -168,7 +149,7 @@ const Topbar = ({ onMenuClick }) => {
                     <motion.button
                         id="topbar-profile-btn"
                         onClick={() => setProfileOpen((prev) => !prev)}
-                        className="flex items-center gap-2 p-1.5 pl-2 pr-3 hover:bg-white/5 border border-white/5 rounded-xl transition duration-150"
+                        className="flex items-center gap-1.5 p-1.5 sm:pl-2 sm:pr-3 hover:bg-white/5 border border-white/5 rounded-xl transition duration-150"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                     >
@@ -176,9 +157,6 @@ const Topbar = ({ onMenuClick }) => {
                         <span className="hidden sm:block text-xs font-semibold text-slate-300 max-w-[90px] truncate">
                             {user?.name?.split(' ')[0] || 'Profile'}
                         </span>
-                        <FaChevronDown
-                            className={`text-[10px] text-slate-500 transition-transform duration-200 ${profileOpen ? 'rotate-180' : ''}`}
-                        />
                     </motion.button>
 
                     {/* Dropdown Menu */}

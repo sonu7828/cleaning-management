@@ -9,7 +9,7 @@ const Modal = ({ isOpen, onClose, title, children }) => {
                 <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
                     {/* Backdrop */}
                     <motion.div 
-                        className="fixed inset-0 bg-black/70 backdrop-blur-sm" 
+                        className="fixed inset-0 bg-black/70 backdrop-filter backdrop-blur-sm" 
                         onClick={onClose} 
                         initial={{ opacity: 0 }} 
                         animate={{ opacity: 1 }} 

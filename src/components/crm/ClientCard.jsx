@@ -15,9 +15,16 @@ const ClientCard = ({ client, onEdit, onDelete }) => {
                     <div className="w-10 h-10 rounded-xl bg-blue-950/50 text-blue-400 flex items-center justify-center font-bold text-sm shrink-0 border border-blue-800/30">
                         <FaUser className="text-xs" />
                     </div>
-                    <div className="overflow-hidden">
-                        <h3 className="text-base font-bold text-white truncate leading-snug">{client.name}</h3>
-                        <span className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">Active Client</span>
+                    <div className="overflow-hidden flex-1">
+                        <div className="flex items-center gap-1.5">
+                            <h3 className="text-base font-bold text-white truncate leading-snug">{client.name}</h3>
+                            <span className={`w-2 h-2 rounded-full shrink-0 ${client.status === 'Inactive' ? 'bg-rose-500' : 'bg-emerald-500'}`} />
+                        </div>
+                        <div className="flex items-center gap-1.5 mt-0.5">
+                            <span className="text-[9px] text-slate-400 font-semibold tracking-wider uppercase">{client.customerType || 'Standard'}</span>
+                            <span className="text-[9px] text-slate-500">•</span>
+                            <span className="text-[9px] text-blue-400 font-semibold">{client.emirate || 'Dubai'}</span>
+                        </div>
                     </div>
                 </div>
 

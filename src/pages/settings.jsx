@@ -1,115 +1,188 @@
-import React, { useState } from 'react';
-import { FaSlidersH, FaTools, FaDatabase, FaKey, FaShieldAlt } from 'react-icons/fa';
+import React, { useContext, useState } from 'react';
+import { AppContext } from '../context/AppContext';
+import { motion } from 'framer-motion';
+import { 
+    FaSlidersH, FaBuilding, FaEnvelope, FaFileAlt, 
+    FaUsers, FaSave, FaCheck, FaLock 
+} from 'react-icons/fa';
 
 const SettingsPage = () => {
-    const [theme, setTheme] = useState('Deep Dark Blue');
-    const [taxRate, setTaxRate] = useState('15');
-    const [backupInterval, setBackupInterval] = useState('Daily');
-    const [smtpServer, setSmtpServer] = useState('smtp.cleancrm.com');
+    const { settings, updateSettings, userRole } = useContext(AppContext);
+    const [activeTab, setActiveTab] = useState('company');
+    const [form, setForm] = useState({ ...settings });
+    const [saved, setSaved] = useState(false);
 
-    const handleSave = (e) => {
-        e.preventDefault();
-        alert('System settings statefully saved to localStorage!');
+    const isAdmin = userRole === 'admin';
+
+    const handleSave = () => {
+        updateSettings(form);
+        setSaved(true);
+        setTimeout(() => setSaved(false), 2000);
     };
 
+    const tabs = [
+        { id: 'company', label: 'Company Profile', icon: <FaBuilding className="text-xs" /> },
+        { id: 'templates', label: 'UAE Invoice SLA', icon: <FaFileAlt className="text-xs" /> },
+        { id: 'users', label: 'Staff Roles', icon: <FaUsers className="text-xs" /> },
+    ];
+
+    if (!isAdmin) {
+        return (
+            <div className="text-center py-20 text-slate-400 bg-white border border-slate-200 rounded-2xl">
+                <FaLock className="text-4xl mx-auto mb-3 opacity-20" />
+                <p className="text-sm font-black text-slate-800">Admin Privileges Required</p>
+                <p className="text-xs text-slate-500 mt-1">Please log in as an administrator to change company configs.</p>
+            </div>
+        );
+    }
+
     return (
-        <div className="space-y-6 max-w-4xl mx-auto text-slate-100">
+        <div className="space-y-6 text-slate-800">
             {/* Header */}
             <div>
-                <h1 className="text-3xl font-black text-white tracking-tight flex items-center gap-2.5">
-                    <FaSlidersH className="text-blue-500" />
-                    System Settings
+                <h1 className="text-xl sm:text-2xl font-black text-slate-800 tracking-tight flex items-center gap-2">
+                    <FaSlidersH className="text-blue-600" />
+                    Global Platform Configuration
                 </h1>
-                <p className="text-slate-400 text-sm mt-0.5">Configure company-wide variables, database sharding, and communication channels.</p>
+                <p className="text-slate-500 text-xs mt-0.5">Customize corporate profile details, active VAT/TRN numbers, and SLA contract formats.</p>
             </div>
 
-            <form onSubmit={handleSave} className="grid grid-cols-1 md:grid-cols-12 gap-6">
-                {/* Navigation Sidebar panel */}
-                <div className="md:col-span-4 bg-[#111827]/85 border border-[#1E293B]/30 rounded-2xl p-4 shadow-xl h-fit space-y-1">
-                    <div className="p-3.5 bg-blue-600/10 text-blue-400 rounded-xl font-bold text-xs flex items-center gap-2 border border-blue-500/20">
-                        <FaTools className="text-xs" />
-                        <span>General Settings</span>
-                    </div>
-                    <div className="p-3.5 text-slate-400 hover:text-white rounded-xl font-bold text-xs flex items-center gap-2 cursor-pointer transition">
-                        <FaDatabase className="text-xs" />
-                        <span>Database Nodes</span>
-                    </div>
-                    <div className="p-3.5 text-slate-400 hover:text-white rounded-xl font-bold text-xs flex items-center gap-2 cursor-pointer transition">
-                        <FaShieldAlt className="text-xs" />
-                        <span>Security & Access</span>
-                    </div>
-                    <div className="p-3.5 text-slate-400 hover:text-white rounded-xl font-bold text-xs flex items-center gap-2 cursor-pointer transition">
-                        <FaKey className="text-xs" />
-                        <span>Integration APIs</span>
-                    </div>
-                </div>
+            {/* Tabs */}
+            <div className="flex gap-1.5 flex-wrap border-b border-slate-200 pb-3">
+                {tabs.map(tab => (
+                    <button 
+                        key={tab.id} 
+                        onClick={() => setActiveTab(tab.id)}
+                        className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition border ${
+                            activeTab === tab.id 
+                                ? 'bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-600/10' 
+                                : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-50'
+                        }`}
+                    >
+                        {tab.icon} {tab.label}
+                    </button>
+                ))}
+            </div>
 
-                {/* Configuration form */}
-                <div className="md:col-span-8 bg-[#111827]/85 border border-[#1E293B]/30 rounded-2xl p-6 shadow-xl space-y-6">
-                    <h3 className="text-base font-bold text-white border-b border-[#1E293B]/20 pb-3 flex items-center gap-2">
-                        <FaTools className="text-blue-500" /> ERP Core Configurations
-                    </h3>
-
+            {/* Content */}
+            <motion.div 
+                initial={{ opacity: 0, y: 5 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                key={activeTab}
+                className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-5"
+            >
+                {activeTab === 'company' && (
                     <div className="space-y-4">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1.5">Platform Base Theme</label>
-                                <select
-                                    value={theme}
-                                    onChange={(e) => setTheme(e.target.value)}
-                                    className="w-full bg-[#0B1120] border border-[#1E293B]/40 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
-                                >
-                                    <option>Deep Dark Blue</option>
-                                    <option>Sleek Slate (Legacy)</option>
-                                    <option>Light Gray Mode</option>
-                                </select>
+                        <h3 className="text-sm font-black text-slate-850">Corporate Profile Configuration</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                            <div className="space-y-1">
+                                <label className="font-bold text-slate-500">Company Legal Name *</label>
+                                <input type="text" value={form.companyName} onChange={e => setForm({ ...form, companyName: e.target.value })} className="w-full px-3 py-2 border border-slate-200 rounded-xl outline-none focus:border-blue-500" />
                             </div>
-                            <div>
-                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1.5">Standard VAT/GST Rate (%)</label>
-                                <input
-                                    type="number"
-                                    value={taxRate}
-                                    onChange={(e) => setTaxRate(e.target.value)}
-                                    className="w-full bg-[#0B1120] border border-[#1E293B]/40 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
-                                />
+                            <div className="space-y-1">
+                                <label className="font-bold text-slate-500">VAT Registration Number (TRN) *</label>
+                                <input type="text" value={form.trn} onChange={e => setForm({ ...form, trn: e.target.value })} className="w-full px-3 py-2 border border-slate-200 rounded-xl outline-none focus:border-blue-500" />
                             </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1.5">Data Backup Interval</label>
-                                <select
-                                    value={backupInterval}
-                                    onChange={(e) => setBackupInterval(e.target.value)}
-                                    className="w-full bg-[#0B1120] border border-[#1E293B]/40 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
-                                >
-                                    <option>Hourly</option>
-                                    <option>Daily</option>
-                                    <option>Weekly</option>
-                                </select>
+                            <div className="space-y-1 md:col-span-2">
+                                <label className="font-bold text-slate-500">HQ Office Location *</label>
+                                <input type="text" value={form.address} onChange={e => setForm({ ...form, address: e.target.value })} className="w-full px-3 py-2 border border-slate-200 rounded-xl outline-none focus:border-blue-500" />
                             </div>
-                            <div>
-                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1.5">SMTP Server Endpoint</label>
-                                <input
-                                    type="text"
-                                    value={smtpServer}
-                                    onChange={(e) => setSmtpServer(e.target.value)}
-                                    className="w-full bg-[#0B1120] border border-[#1E293B]/40 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
-                                />
+                            <div className="space-y-1">
+                                <label className="font-bold text-slate-500">Corporate Phone *</label>
+                                <input type="text" value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} className="w-full px-3 py-2 border border-slate-200 rounded-xl outline-none focus:border-blue-500" />
+                            </div>
+                            <div className="space-y-1">
+                                <label className="font-bold text-slate-500">Corporate Email *</label>
+                                <input type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} className="w-full px-3 py-2 border border-slate-200 rounded-xl outline-none focus:border-blue-500" />
+                            </div>
+                            <div className="space-y-1">
+                                <label className="font-bold text-slate-500">Website URL</label>
+                                <input type="text" value={form.website} onChange={e => setForm({ ...form, website: e.target.value })} className="w-full px-3 py-2 border border-slate-200 rounded-xl outline-none focus:border-blue-500" />
+                            </div>
+                            <div className="space-y-1">
+                                <label className="font-bold text-slate-500">Company Logo Source</label>
+                                <input type="text" value={form.logo} onChange={e => setForm({ ...form, logo: e.target.value })} className="w-full px-3 py-2 border border-slate-200 rounded-xl outline-none focus:border-blue-500" />
                             </div>
                         </div>
                     </div>
+                )}
 
-                    <div className="flex justify-end pt-2">
-                        <button
-                            type="submit"
-                            className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-blue-600/20"
-                        >
-                            Save System Variables
-                        </button>
+
+                {activeTab === 'templates' && (
+                    <div className="space-y-4">
+                        <h3 className="text-sm font-black text-slate-850">Document SLA Clauses</h3>
+                        <p className="text-slate-500 text-xs mt-0.5">Edit terms appended to all outgoing quotations and digital AMC contracts.</p>
+                        <div className="space-y-4 text-xs">
+                            <div className="space-y-1">
+                                <label className="font-bold text-slate-500">Quotation Clauses</label>
+                                <textarea rows="4" value={form.quotationTerms} onChange={e => setForm({ ...form, quotationTerms: e.target.value })} className="w-full px-3 py-2 border border-slate-200 rounded-xl outline-none focus:border-blue-500 resize-none font-mono text-[10px] leading-relaxed text-slate-600" />
+                            </div>
+                            <div className="space-y-1">
+                                <label className="font-bold text-slate-500">AMC Clauses</label>
+                                <textarea rows="4" value={form.amcTerms} onChange={e => setForm({ ...form, amcTerms: e.target.value })} className="w-full px-3 py-2 border border-slate-200 rounded-xl outline-none focus:border-blue-500 resize-none font-mono text-[10px] leading-relaxed text-slate-600" />
+                            </div>
+                        </div>
                     </div>
+                )}
+
+                {activeTab === 'users' && (
+                    <div className="space-y-4">
+                        <h3 className="text-sm font-black text-slate-850">Staff & Roles Control</h3>
+                        <div className="overflow-x-auto text-xs">
+                            <table className="w-full text-left text-xs border-collapse">
+                                <thead>
+                                    <tr className="border-b border-slate-200 text-slate-450 font-extrabold uppercase tracking-wider">
+                                        <th className="py-2.5 px-2">Account Name</th>
+                                        <th className="py-2.5 px-2">Login Email</th>
+                                        <th className="py-2.5 px-2">Role Access</th>
+                                        <th className="py-2.5 px-2">Log Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-slate-100 font-semibold text-slate-650">
+                                    <tr className="hover:bg-slate-50 transition">
+                                        <td className="py-3 px-2 text-slate-800">Administrator</td>
+                                        <td className="py-3 px-2">admin@teamenviro.ae</td>
+                                        <td className="py-3 px-2"><span className="px-2 py-0.5 rounded bg-purple-50 text-purple-750 border border-purple-100 text-[8px] font-bold">Admin</span></td>
+                                        <td className="py-3 px-2"><span className="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-100 text-[8px] font-bold">Active</span></td>
+                                    </tr>
+                                    <tr className="hover:bg-slate-50 transition">
+                                        <td className="py-3 px-2 text-slate-800">Kareem Fahmi</td>
+                                        <td className="py-3 px-2">sales@teamenviro.ae</td>
+                                        <td className="py-3 px-2"><span className="px-2 py-0.5 rounded bg-blue-50 text-blue-750 border border-blue-100 text-[8px] font-bold">Sales</span></td>
+                                        <td className="py-3 px-2"><span className="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-100 text-[8px] font-bold">Active</span></td>
+                                    </tr>
+                                    <tr className="hover:bg-slate-50 transition">
+                                        <td className="py-3 px-2 text-slate-800">Tariq Mahmood</td>
+                                        <td className="py-3 px-2">dispatch@teamenviro.ae</td>
+                                        <td className="py-3 px-2"><span className="px-2 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-100 text-[8px] font-bold">Dispatch Desk</span></td>
+                                        <td className="py-3 px-2"><span className="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-100 text-[8px] font-bold">Active</span></td>
+                                    </tr>
+                                    <tr className="hover:bg-slate-50 transition">
+                                        <td className="py-3 px-2 text-slate-800">Ali Hassan</td>
+                                        <td className="py-3 px-2">ali@teamenviro.ae</td>
+                                        <td className="py-3 px-2"><span className="px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200 text-[8px] font-bold">Technician</span></td>
+                                        <td className="py-3 px-2"><span className="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-100 text-[8px] font-bold">Active</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                )}
+
+                {/* Save Button */}
+                <div className="flex justify-end pt-3 border-t border-slate-100">
+                    <button 
+                        onClick={handleSave}
+                        className={`inline-flex items-center gap-2 px-5 py-2.5 font-bold rounded-xl text-xs transition-all ${
+                            saved 
+                                ? 'bg-emerald-600 text-white' 
+                                : 'bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-600/10 active:scale-[0.98]'
+                        }`}
+                    >
+                        {saved ? <><FaCheck className="text-xs" /> Saved!</> : <><FaSave className="text-xs" /> Save Settings</>}
+                    </button>
                 </div>
-            </form>
+            </motion.div>
         </div>
     );
 };

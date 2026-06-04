@@ -24,12 +24,12 @@ const FormInput = ({
     const [isFocused, setIsFocused] = useState(false);
 
     return (
-        <div className={`space-y-1.5 ${className}`}>
+        <div className={`space-y-1 ${className}`}>
             {/* Label */}
             {label && (
                 <label
                     htmlFor={inputId}
-                    className="block text-[10px] font-black text-white/50 uppercase tracking-[0.2em] ml-1 select-none"
+                    className="block text-[9px] sm:text-[10px] font-black text-white/50 uppercase tracking-[0.2em] ml-1 select-none"
                 >
                     {label}
                     {required && (
@@ -43,12 +43,12 @@ const FormInput = ({
                 {/* Leading Icon */}
                 {Icon && (
                     <span
-                        className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${
-                            isFocused ? 'text-blue-400' : error ? 'text-rose-400/60' : 'text-white/25'
+                        className={`absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none transition-colors duration-300 z-10 ${
+                            isFocused ? 'text-blue-400' : error ? 'text-rose-400' : 'text-white'
                         }`}
                         aria-hidden="true"
                     >
-                        <Icon className="text-sm" />
+                        <Icon className="text-xs" />
                     </span>
                 )}
 
@@ -68,21 +68,21 @@ const FormInput = ({
                     aria-describedby={error ? errorId : undefined}
                     aria-required={required ? 'true' : undefined}
                     className={`
-                        w-full h-12 sm:h-[3.25rem]
-                        ${Icon ? 'pl-11' : 'pl-4'}
-                        ${trailingIcon ? 'pr-11' : 'pr-4'}
-                        bg-white/[0.03] border rounded-2xl
-                        text-white text-sm font-medium
-                        placeholder-white/20
-                        focus:outline-none focus:ring-2 focus:bg-white/[0.05]
+                        w-full h-10 sm:h-[2.75rem]
+                        ${Icon ? 'pl-10' : 'pl-3.5'}
+                        ${trailingIcon ? 'pr-10' : 'pr-3.5'}
+                        bg-white border rounded-xl
+                        text-slate-900 text-xs font-semibold
+                        placeholder-slate-400
+                        focus:outline-none focus:ring-2 focus:bg-white
                         transition-all duration-300
                         disabled:opacity-40 disabled:cursor-not-allowed
                         ${error
-                            ? 'border-rose-500/40 focus:ring-rose-500/30 focus:border-rose-500/40'
-                            : 'border-white/10 focus:ring-blue-500/40 focus:border-blue-500/40 hover:border-white/15'
+                            ? 'border-rose-300 focus:ring-rose-500/30 focus:border-rose-400'
+                            : 'border-slate-200 focus:ring-blue-500/40 focus:border-blue-400 hover:border-slate-300'
                         }
                     `.trim()}
-                    style={{ willChange: 'box-shadow, border-color' }}
+                    style={{ color: '#000000', backgroundColor: '#ffffff', willChange: 'box-shadow, border-color' }}
                     {...props}
                 />
 
@@ -91,11 +91,11 @@ const FormInput = ({
                     <button
                         type="button"
                         onClick={onTrailingIconClick}
-                        className="absolute inset-y-0 right-0 pr-4 flex items-center text-white/30 hover:text-white/60 focus:text-blue-400 focus:outline-none transition-colors duration-200"
+                        className="absolute inset-y-0 right-0 pr-4 flex items-center text-white hover:text-slate-200 focus:text-blue-400 focus:outline-none transition-colors duration-200 z-10"
                         aria-label={trailingIconAriaLabel || 'Toggle'}
                         tabIndex={0}
                     >
-                        {trailingIcon}
+                        <span className="text-base">{trailingIcon}</span>
                     </button>
                 )}
             </div>

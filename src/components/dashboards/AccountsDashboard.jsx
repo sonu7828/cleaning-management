@@ -8,21 +8,23 @@ import {
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const AccountsDashboard = () => {
-    const { invoices, payInvoice } = useContext(AppContext);
+    const { invoices, updateInvoiceStatus } = useContext(AppContext);
     const [successMessage, setSuccessMessage] = useState('');
 
     // Calculate billing KPIs
     const totalBilled = invoices.reduce((acc, curr) => acc + curr.amount, 0);
     const paidAmount = invoices.filter(inv => inv.status === 'Paid').reduce((acc, curr) => acc + curr.amount, 0);
-    const outstandingAmount = invoices.filter(inv => inv.status === 'Pending').reduce((acc, curr) => acc + curr.amount, 0);
+    const outstandingAmount = invoices.filter(inv => ['Sent', 'Pending', 'Overdue'].includes(inv.status)).reduce((acc, curr) => acc + curr.amount, 0);
     
     // Tax rates
-    const vatRate = 0.15; // 15% VAT
+    const vatRate = 0.05; // 5% UAE VAT
     const accumulatedVat = paidAmount * vatRate;
     const netEarning = paidAmount - accumulatedVat;
 
     const handleMarkAsPaid = (id) => {
-        payInvoice(id);
+        if (updateInvoiceStatus) {
+            updateInvoiceStatus(id, 'Paid');
+        }
         setSuccessMessage(`Invoice ${id} marked as Paid statefully!`);
         setTimeout(() => setSuccessMessage(''), 3000);
     };
@@ -76,7 +78,7 @@ const AccountsDashboard = () => {
                         <span className="text-xs font-bold uppercase tracking-wider">Total Gross Invoiced</span>
                         <FaFileInvoiceDollar className="text-blue-400 text-lg" />
                     </div>
-                    <div className="text-3xl font-black text-white">${totalBilled.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
+                    <div className="text-3xl font-black text-white">AED {totalBilled.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
                     <div className="text-xs text-slate-400 font-medium">Billed across all agency accounts</div>
                 </div>
 
@@ -85,7 +87,7 @@ const AccountsDashboard = () => {
                         <span className="text-xs font-bold uppercase tracking-wider">Collections Received</span>
                         <FaArrowUp className="text-emerald-400 text-lg" />
                     </div>
-                    <div className="text-3xl font-black text-emerald-400">${paidAmount.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
+                    <div className="text-3xl font-black text-emerald-400">AED {paidAmount.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
                     <div className="text-xs text-slate-400 font-medium">Statefully marked paid invoices</div>
                 </div>
 
@@ -94,17 +96,17 @@ const AccountsDashboard = () => {
                         <span className="text-xs font-bold uppercase tracking-wider">Accounts Receivable</span>
                         <FaArrowDown className="text-amber-400 text-lg" />
                     </div>
-                    <div className="text-3xl font-black text-amber-400">${outstandingAmount.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
+                    <div className="text-3xl font-black text-amber-400">AED {outstandingAmount.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
                     <div className="text-xs text-slate-400 font-medium">Outstanding invoices pending</div>
                 </div>
 
                 <div className="bg-[#111827]/85 border border-[#1E293B]/30 backdrop-blur-sm shadow-xl rounded-2xl p-5 space-y-2">
                     <div className="flex items-center justify-between text-slate-400">
-                        <span className="text-xs font-bold uppercase tracking-wider">Quarterly VAT (15%)</span>
+                        <span className="text-xs font-bold uppercase tracking-wider">Quarterly VAT (5%)</span>
                         <span className="text-[10px] bg-rose-500/10 text-rose-300 px-2 py-0.5 rounded-full font-bold border border-rose-500/20">Output Tax</span>
                     </div>
-                    <div className="text-3xl font-black text-white">${accumulatedVat.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
-                    <div className="text-xs text-slate-400 font-medium">Net profit: ${netEarning.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
+                    <div className="text-3xl font-black text-white">AED {accumulatedVat.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
+                    <div className="text-xs text-slate-400 font-medium">Net profit: AED {netEarning.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
                 </div>
             </div>
 
@@ -159,10 +161,10 @@ const AccountsDashboard = () => {
                                     <tr key={inv.id} className="hover:bg-white/5 transition">
                                         <td className="py-3.5 px-2">
                                             <div className="font-bold text-white">{inv.id}</div>
-                                            <div className="text-[9px] text-slate-400 mt-0.5">Issued: {inv.createdDate}</div>
+                                            <div className="text-[9px] text-slate-400 mt-0.5">Issued: {inv.createdDate || inv.date}</div>
                                         </td>
-                                        <td className="py-3.5 px-2 text-slate-300 font-semibold">{inv.clientName}</td>
-                                        <td className="py-3.5 px-2 font-extrabold text-white">${inv.amount.toFixed(2)}</td>
+                                        <td className="py-3.5 px-2 text-slate-300 font-semibold">{inv.customerName}</td>
+                                        <td className="py-3.5 px-2 font-extrabold text-white">AED {inv.amount.toFixed(2)}</td>
                                         <td className="py-3.5 px-2 text-slate-400">{inv.dueDate}</td>
                                         <td className="py-3.5 px-2">
                                             <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold ${
@@ -173,7 +175,7 @@ const AccountsDashboard = () => {
                                             </span>
                                         </td>
                                         <td className="py-3.5 px-2 text-right">
-                                            {inv.status === 'Pending' && (
+                                            {(inv.status === 'Sent' || inv.status === 'Pending' || inv.status === 'Overdue') && (
                                                 <button 
                                                     onClick={() => handleMarkAsPaid(inv.id)}
                                                     className="inline-flex items-center gap-1 px-2 py-1 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 font-bold rounded-lg transition"

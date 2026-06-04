@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
     FaUserShield,
-    FaUserCog,
-    FaTools,
-    FaTruck,
+    FaUsers,
+    FaCalendarAlt,
+    FaUserGraduate,
     FaFileInvoiceDollar,
-    FaBuilding,
+    FaTruck,
     FaArrowRight,
     FaEnvelope,
     FaLock,
@@ -42,8 +42,8 @@ const validatePassword = (password) => {
    ────────────────────────────────────────────── */
 const ROLES = [
     {
-        id: 'superadmin',
-        title: 'Super Admin',
+        id: 'admin',
+        title: 'Admin / Owner',
         borderColor: 'border-purple-500/30',
         hoverBg: 'hover:bg-purple-500/10',
         hoverBorder: 'hover:border-purple-500/50',
@@ -53,37 +53,37 @@ const ROLES = [
         icon: <FaUserShield className="text-xs" />,
     },
     {
-        id: 'admin',
-        title: 'Admin / Agency',
+        id: 'sales',
+        title: 'Sales Rep',
         borderColor: 'border-blue-500/30',
         hoverBg: 'hover:bg-blue-500/10',
         hoverBorder: 'hover:border-blue-500/50',
         iconBg: 'bg-blue-500/10',
         iconColor: 'text-blue-400',
         shadowColor: 'shadow-blue-500/10',
-        icon: <FaUserCog className="text-xs" />,
+        icon: <FaUsers className="text-xs" />,
     },
     {
-        id: 'technician',
-        title: 'Technician',
-        borderColor: 'border-amber-500/30',
-        hoverBg: 'hover:bg-amber-500/10',
-        hoverBorder: 'hover:border-amber-500/50',
-        iconBg: 'bg-amber-500/10',
-        iconColor: 'text-amber-400',
-        shadowColor: 'shadow-amber-500/10',
-        icon: <FaTools className="text-xs" />,
-    },
-    {
-        id: 'driver',
-        title: 'Driver Portal',
+        id: 'dispatch',
+        title: 'Dispatch Team',
         borderColor: 'border-emerald-500/30',
         hoverBg: 'hover:bg-emerald-500/10',
         hoverBorder: 'hover:border-emerald-500/50',
         iconBg: 'bg-emerald-500/10',
         iconColor: 'text-emerald-400',
         shadowColor: 'shadow-emerald-500/10',
-        icon: <FaTruck className="text-xs" />,
+        icon: <FaCalendarAlt className="text-xs" />,
+    },
+    {
+        id: 'technician',
+        title: 'Cleaning Tech',
+        borderColor: 'border-amber-500/30',
+        hoverBg: 'hover:bg-amber-500/10',
+        hoverBorder: 'hover:border-amber-500/50',
+        iconBg: 'bg-amber-500/10',
+        iconColor: 'text-amber-400',
+        shadowColor: 'shadow-amber-500/10',
+        icon: <FaUserGraduate className="text-xs" />,
     },
     {
         id: 'accounts',
@@ -97,15 +97,15 @@ const ROLES = [
         icon: <FaFileInvoiceDollar className="text-xs" />,
     },
     {
-        id: 'client',
-        title: 'Client Portal',
-        borderColor: 'border-cyan-500/30',
-        hoverBg: 'hover:bg-cyan-500/10',
-        hoverBorder: 'hover:border-cyan-500/50',
-        iconBg: 'bg-cyan-500/10',
-        iconColor: 'text-cyan-400',
-        shadowColor: 'shadow-cyan-500/10',
-        icon: <FaBuilding className="text-xs" />,
+        id: 'driver',
+        title: 'Driver Logistics',
+        borderColor: 'border-indigo-500/30',
+        hoverBg: 'hover:bg-indigo-500/10',
+        hoverBorder: 'hover:border-indigo-500/50',
+        iconBg: 'bg-indigo-500/10',
+        iconColor: 'text-indigo-400',
+        shadowColor: 'shadow-indigo-500/10',
+        icon: <FaTruck className="text-xs" />,
     },
 ];
 
@@ -137,8 +137,8 @@ const LoginPage = () => {
     const navigate = useNavigate();
 
     // Form State
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('admin@teamenviro.ae');
+    const [password, setPassword] = useState('12345678');
     const [showPassword, setShowPassword] = useState(false);
     const [loadingRole, setLoadingRole] = useState(null);
 
@@ -259,37 +259,28 @@ const LoginPage = () => {
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
-                className="relative z-10 w-full max-w-md sm:max-w-lg lg:max-w-xl 2xl:max-w-2xl"
+                className="relative z-10 w-full max-w-md sm:max-w-lg lg:max-w-xl 2xl:max-w-2xl mt-3 sm:mt-0 sm:-translate-y-10"
             >
                 {/* ── Logo & Heading ── */}
-                <motion.div variants={itemVariants} className="text-center mb-8 sm:mb-10">
-                    <motion.div
-                        className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-indigo-600 to-blue-600 rounded-2xl shadow-2xl shadow-indigo-600/20 mb-4 sm:mb-6 cursor-pointer border border-white/10"
-                        whileHover={{ scale: 1.05, rotate: 5 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => navigate('/')}
-                        role="button"
-                        aria-label="Go to home page"
-                        tabIndex={0}
-                    >
-                        <span className="text-xl sm:text-2xl font-black text-white select-none">C</span>
-                    </motion.div>
+                <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                    <div className="inline-flex items-center justify-center cursor-pointer shrink-0" onClick={() => navigate('/')}>
+                        <img src="/images/team-enviro-logo.png" alt="Team Enviro Logo" className="h-12 sm:h-16 object-contain drop-shadow-lg" />
+                    </div>
 
-                    <h1
-                        className="font-black text-white tracking-tight mb-2"
-                        style={{ fontSize: 'clamp(1.5rem, 4vw, 2.25rem)' }}
-                    >
-                        Welcome Back
-                    </h1>
-                    <p className="text-slate-400 font-medium text-sm sm:text-base max-w-sm mx-auto">
-                        Enter custom credentials or select a quick access desk.
-                    </p>
+                    <div className="text-center sm:text-left">
+                        <h1 className="font-black text-white tracking-tight mb-0.5 text-sm sm:text-lg md:text-xl lg:text-2xl leading-none">
+                            OPERATIONS & CRM SYSTEM
+                        </h1>
+                        <p className="text-[8px] sm:text-xs text-blue-400 font-extrabold uppercase tracking-widest">
+                            🧹 TEAM ENVIRO CLEANING SERVICES
+                        </p>
+                    </div>
                 </motion.div>
 
                 {/* ── Glass Card ── */}
                 <motion.div
                     variants={itemVariants}
-                    className="contain-content bg-slate-900/40 backdrop-blur-xl p-5 sm:p-7 md:p-8 lg:p-10 rounded-2xl sm:rounded-3xl border border-indigo-500/10 shadow-login-card space-y-5 sm:space-y-6 relative overflow-hidden"
+                    className="contain-content bg-slate-900/40 backdrop-blur-xl pt-4 pb-5 px-4 sm:p-7 md:p-9 lg:p-10 rounded-2xl sm:rounded-3xl border border-indigo-500/10 shadow-login-card space-y-4 sm:space-y-5 relative overflow-hidden"
                 >
                     {/* Card Top Glow */}
                     <div
@@ -305,17 +296,17 @@ const LoginPage = () => {
                     {/* ── Login Form ── */}
                     <form
                         onSubmit={handleFormSubmit}
-                        className={`relative z-10 space-y-4 sm:space-y-5 ${formShake ? 'animate-shake' : ''}`}
+                        className={`relative z-10 space-y-3.5 sm:space-y-4 ${formShake ? 'animate-shake' : ''}`}
                         noValidate
                     >
                         {/* Email Input */}
                         <FormInput
-                            label="Terminal Address"
+                            label="Email Address"
                             type="email"
                             value={email}
                             onChange={handleEmailChange}
                             onBlur={handleEmailBlur}
-                            placeholder="operations@agency.com"
+                            placeholder="admin@teamenviro.ae"
                             required
                             autoComplete="email"
                             icon={FaEnvelope}
@@ -324,31 +315,31 @@ const LoginPage = () => {
                         />
 
                         {/* Password Input */}
-                        <div className="space-y-1.5">
+                        <div className="space-y-1">
                             <div className="flex justify-between items-center px-1">
                                 <label
                                     htmlFor="login-password"
-                                    className="text-[10px] font-black text-white/50 uppercase tracking-[0.2em] select-none"
+                                    className="text-[9px] sm:text-[10px] font-black text-white/50 uppercase tracking-[0.2em] select-none"
                                 >
-                                    Security Key
+                                    Password
                                     <span className="text-rose-400 ml-0.5" aria-hidden="true">*</span>
                                 </label>
                                 <button
                                     type="button"
                                     onClick={() => navigate('/forgot-password')}
-                                    className="text-[10px] font-black text-blue-400 uppercase tracking-widest hover:text-blue-300 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/50 focus-visible:ring-offset-1 focus-visible:ring-offset-transparent rounded transition-colors"
+                                    className="text-[6px] sm:text-[8px] font-light text-white/30 hover:text-blue-400 focus:outline-none rounded transition-colors"
                                 >
-                                    Lost Key?
+                                    Forgot Password?
                                 </button>
                             </div>
                             <div className="relative group">
                                 <span
-                                    className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${
-                                        errors.password && touched.password ? 'text-rose-400/60' : 'text-white/25 group-focus-within:text-blue-400'
+                                    className={`absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none transition-colors duration-300 z-10 ${
+                                        errors.password && touched.password ? 'text-rose-400' : 'text-white group-focus-within:text-blue-400'
                                     }`}
                                     aria-hidden="true"
                                 >
-                                    <FaLock className="text-sm" />
+                                    <FaLock className="text-xs" />
                                 </span>
                                 <input
                                     id="login-password"
@@ -363,35 +354,35 @@ const LoginPage = () => {
                                     aria-describedby={errors.password && touched.password ? 'login-password-error' : undefined}
                                     aria-required="true"
                                     className={`
-                                        w-full pl-11 pr-11 h-12 sm:h-[3.25rem]
-                                        bg-white/[0.03] border rounded-2xl
-                                        text-white text-sm font-medium
-                                        placeholder-white/20
-                                        focus:outline-none focus:ring-2 focus:bg-white/[0.05]
+                                        w-full pl-10 pr-10 h-10 sm:h-[2.75rem]
+                                        bg-white border rounded-xl
+                                        text-slate-900 text-xs font-semibold
+                                        placeholder-slate-400
+                                        focus:outline-none focus:ring-2 focus:bg-white
                                         transition-all duration-300
                                         ${errors.password && touched.password
                                             ? 'border-rose-500/40 focus:ring-rose-500/30 focus:border-rose-500/40'
-                                            : 'border-white/10 focus:ring-blue-500/40 focus:border-blue-500/40 hover:border-white/15'
+                                            : 'border-slate-200 focus:ring-blue-500/40 focus:border-blue-500/40 hover:border-slate-300'
                                         }
                                     `.trim()}
-                                    style={{ willChange: 'box-shadow, border-color' }}
+                                    style={{ color: '#000000', backgroundColor: '#ffffff', willChange: 'box-shadow, border-color' }}
                                 />
                                 {/* Password Visibility Toggle */}
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword((prev) => !prev)}
-                                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-white/30 hover:text-white/60 focus:text-blue-400 focus:outline-none transition-colors duration-200"
+                                    className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-white hover:text-slate-200 focus:text-blue-400 focus:outline-none transition-colors duration-200 z-10"
                                     aria-label={showPassword ? 'Hide password' : 'Show password'}
                                     tabIndex={0}
                                 >
-                                    {showPassword ? <FaEyeSlash className="text-sm" /> : <FaEye className="text-sm" />}
+                                    {showPassword ? <FaEyeSlash className="text-xs" /> : <FaEye className="text-xs" />}
                                 </button>
                             </div>
                             {/* Password Error */}
                             {touched.password && errors.password && (
                                 <p
                                     id="login-password-error"
-                                    className="text-[11px] font-semibold text-rose-400 ml-1 flex items-center gap-1 animate-fade-in"
+                                    className="text-[10px] font-semibold text-rose-400 ml-1 flex items-center gap-1 animate-fade-in"
                                     role="alert"
                                 >
                                     <svg className="w-3 h-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
@@ -406,7 +397,7 @@ const LoginPage = () => {
                         <motion.button
                             type="submit"
                             disabled={isAnyLoading}
-                            className="w-full h-12 sm:h-14 bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-black rounded-2xl shadow-lg shadow-indigo-600/20 hover:from-indigo-500 hover:to-blue-500 hover:shadow-indigo-500/30 active:scale-[0.98] transition-all text-sm flex justify-center items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed group focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+                            className="w-full h-10 sm:h-12 bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-black rounded-xl shadow-lg shadow-indigo-600/20 hover:from-indigo-500 hover:to-blue-500 hover:shadow-indigo-500/30 active:scale-[0.98] transition-all text-xs sm:text-xs flex justify-center items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed group focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
                             style={{ willChange: 'transform, box-shadow' }}
                             whileHover={!isAnyLoading ? { scale: 1.01 } : {}}
                             whileTap={!isAnyLoading ? { scale: 0.98 } : {}}
@@ -415,11 +406,11 @@ const LoginPage = () => {
                             {loadingRole === 'form' ? (
                                 <>
                                     <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" aria-hidden="true" />
-                                    <span>Authenticating...</span>
+                                    <span>Signing In...</span>
                                 </>
                             ) : (
                                 <>
-                                    <span>Access Dashboard</span>
+                                    <span>Sign In</span>
                                     <FaArrowRight className="group-hover:translate-x-1 transition-transform text-xs" aria-hidden="true" />
                                 </>
                             )}
@@ -433,7 +424,7 @@ const LoginPage = () => {
                     <div className="relative z-10" role="group" aria-labelledby="quick-access-label">
                         <label
                             id="quick-access-label"
-                            className="text-[10px] font-black text-white/50 uppercase tracking-[0.2em] ml-1 block mb-3 select-none"
+                            className="text-[9px] sm:text-[10px] font-black text-white/50 uppercase tracking-[0.2em] ml-1 block mb-2 select-none"
                         >
                             Quick Access Desks
                         </label>
@@ -462,7 +453,7 @@ const LoginPage = () => {
                     <div className="relative z-10 flex justify-center pt-1 sm:pt-2">
                         <motion.button
                             onClick={() => navigate('/')}
-                            className="flex items-center gap-1.5 text-[10px] font-black text-white/30 uppercase tracking-[0.2em] hover:text-white/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/50 focus-visible:ring-offset-1 focus-visible:ring-offset-transparent rounded transition-colors"
+                            className="flex items-center gap-1.5 text-[9px] sm:text-[10px] font-black text-white/30 uppercase tracking-[0.2em] hover:text-white/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/50 focus-visible:ring-offset-1 focus-visible:ring-offset-transparent rounded transition-colors"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             aria-label="Go to home page"
@@ -470,21 +461,6 @@ const LoginPage = () => {
                             <FaHome className="text-[10px]" aria-hidden="true" />
                             Home
                         </motion.button>
-                    </div>
-                </motion.div>
-
-                {/* ── Bottom Security Badges ── */}
-                <motion.div
-                    variants={itemVariants}
-                    className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4 sm:gap-6"
-                >
-                    <div className="flex items-center space-x-2 text-[10px] font-black text-white/30 uppercase tracking-[0.2em]">
-                        <FiShield className="text-indigo-400" aria-hidden="true" />
-                        <span>256-bit AES</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-[10px] font-black text-white/30 uppercase tracking-[0.2em]">
-                        <FiCpu className="text-blue-400" aria-hidden="true" />
-                        <span>Edge Nodes Active</span>
                     </div>
                 </motion.div>
             </motion.div>

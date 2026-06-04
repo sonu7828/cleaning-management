@@ -7,10 +7,10 @@ import {
 } from 'react-icons/fa';
 
 const TechnicianDashboard = () => {
-    const { jobs, updateJobStatus } = useContext(AppContext);
+    const { workOrders, updateWorkOrderStatus, user } = useContext(AppContext);
     
-    // Filter jobs assigned to Sarah Jenkins (mock technician)
-    const technicianJobs = jobs.filter(j => j.employeeName === 'Sarah Jenkins');
+    // Filter jobs assigned to the technician
+    const technicianJobs = workOrders.filter(wo => wo.assignedTechnician === user.name || wo.assignedTechnician === 'Ali Hassan');
 
     const [activeJob, setActiveJob] = useState(null);
     const [showCheckoutModal, setShowCheckoutModal] = useState(false);
@@ -30,7 +30,7 @@ const TechnicianDashboard = () => {
     const [beforePhoto, setBeforePhoto] = useState(null);
     const [afterPhoto, setAfterPhoto] = useState(null);
 
-    // Adjust logical canvas scale to match actual rendered dimensions on mount/display
+    // Adjust canvas size
     useEffect(() => {
         if (showCheckoutModal && canvasRef.current) {
             const canvas = canvasRef.current;
@@ -41,11 +41,7 @@ const TechnicianDashboard = () => {
     }, [showCheckoutModal]);
 
     const handleCheckIn = (jobId) => {
-        updateJobStatus(jobId, 'In Progress');
-        // Seed a quick mockup before photo
-        updateJobStatus(jobId, 'In Progress', {
-            beforePhoto: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=300&auto=format&fit=crop&q=60'
-        });
+        updateWorkOrderStatus(jobId, 'In Progress');
     };
 
     const handleCheckOutOpen = (job) => {
@@ -62,12 +58,12 @@ const TechnicianDashboard = () => {
         });
     };
 
-    // Draw handler for simulated signature canvas (supports touch & mouse)
+    // Drawing helpers
     const startDrawing = (e) => {
         const canvas = canvasRef.current;
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
-        ctx.strokeStyle = '#3b82f6'; // blue-500
+        ctx.strokeStyle = '#3b82f6';
         ctx.lineWidth = 3;
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
@@ -98,10 +94,7 @@ const TechnicianDashboard = () => {
         
         let clientX, clientY;
         if (e.touches && e.touches.length > 0) {
-            // Prevent screen scrolling when drawing on touch devices
-            if (e.cancelable) {
-                e.preventDefault();
-            }
+            if (e.cancelable) e.preventDefault();
             clientX = e.touches[0].clientX;
             clientY = e.touches[0].clientY;
         } else {
@@ -126,7 +119,6 @@ const TechnicianDashboard = () => {
     };
 
     const simulatePhotoUpload = (type) => {
-        // Simulates picking a standard cleaning mockup photo
         const mockPhotos = {
             before: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=300&auto=format&fit=crop&q=60',
             after: 'https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=300&auto=format&fit=crop&q=60'
@@ -144,25 +136,24 @@ const TechnicianDashboard = () => {
             return;
         }
 
-        updateJobStatus(activeJob.id, 'Completed', {
-            beforePhoto: beforePhoto,
-            afterPhoto: afterPhoto || 'https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=300&auto=format&fit=crop&q=60',
-            signature: 'SIMULATED_SIGNATURE_DATA'
-        });
-
+        updateWorkOrderStatus(activeJob.id, 'Completed');
         setShowCheckoutModal(false);
         setActiveJob(null);
     };
 
     return (
-        <div className="max-w-md mx-auto space-y-6 pb-12 text-slate-100">
+        <div className="max-w-4xl mx-auto space-y-6 pb-12 text-slate-100 px-4">
             {/* Header */}
-            <div>
-                <h1 className="text-2xl font-black text-white tracking-tight flex items-center gap-2">
-                    <FaTools className="text-amber-500 text-xl animate-spin-slow" />
-                    My Daily Roster Tasks
-                </h1>
-                <p className="text-slate-400 text-xs mt-0.5">Mobile-first site operator dashboard. Clock-in and sign off checklists.</p>
+            <div className="flex items-center gap-3 border-b border-white/5 pb-4">
+                <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
+                    <FaTools className="text-amber-500 text-xl" />
+                </div>
+                <div>
+                    <h1 className="text-xl sm:text-2xl font-black text-white tracking-tight flex items-center gap-2">
+                        My Daily Roster Tasks
+                    </h1>
+                    <p className="text-slate-400 text-xs mt-0.5">Mobile-first site operator dashboard. Clock-in and sign off checklists.</p>
+                </div>
             </div>
 
             {/* Tasks list */}
@@ -170,62 +161,65 @@ const TechnicianDashboard = () => {
                 {technicianJobs.map((job) => (
                     <div 
                         key={job.id} 
-                        className={`bg-[#111827]/85 border rounded-2xl p-4 shadow-xl space-y-4 border-l-4 backdrop-blur-sm ${
+                        className={`bg-[#111827]/85 border rounded-2xl p-5 shadow-xl border-l-4 backdrop-blur-sm transition-all hover:bg-[#111827]/95 ${
                             job.status === 'Completed' ? 'border-l-emerald-500 border-t-[#1E293B]/30 border-r-[#1E293B]/30 border-b-[#1E293B]/30' :
                             job.status === 'In Progress' ? 'border-l-blue-500 bg-blue-950/20 border-t-[#1E293B]/40 border-r-[#1E293B]/40 border-b-[#1E293B]/40' :
                             'border-l-amber-500 border-t-[#1E293B]/30 border-r-[#1E293B]/30 border-b-[#1E293B]/30'
                         }`}
                     >
-                        <div className="flex justify-between items-start">
-                            <div className="space-y-0.5">
-                                <h3 className="font-extrabold text-sm text-white leading-snug">{job.title}</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+                            {/* Col 1: Job Header */}
+                            <div className="space-y-1 md:col-span-4">
+                                <span className={`inline-block px-2.5 py-0.5 rounded-full text-[9px] font-bold ${
+                                    job.status === 'Completed' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' :
+                                    job.status === 'In Progress' ? 'bg-blue-500/20 text-blue-300 border border-blue-500/30 animate-pulse' :
+                                    'bg-amber-500/20 text-amber-300 border border-amber-500/30'
+                                }`}>
+                                    {job.status}
+                                </span>
+                                <h3 className="font-extrabold text-sm sm:text-base text-white leading-snug">{job.serviceType}</h3>
                                 <p className="text-[10px] text-slate-400 font-semibold">Job Roster ID: {job.id}</p>
                             </div>
-                            <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold ${
-                                job.status === 'Completed' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' :
-                                job.status === 'In Progress' ? 'bg-blue-500/20 text-blue-300 border border-blue-500/30 animate-pulse' :
-                                'bg-amber-500/20 text-amber-300 border border-amber-500/30'
-                            }`}>
-                                {job.status}
-                            </span>
-                        </div>
 
-                        <div className="space-y-1.5 text-xs text-slate-300">
-                            <div className="flex items-center gap-1.5">
-                                <FaMapMarkerAlt className="text-slate-400 text-[10px]" />
-                                <span className="font-semibold text-white">{job.clientName}</span>
-                            </div>
-                            <div className="flex items-center gap-1.5">
-                                <FaClock className="text-slate-400 text-[10px]" />
-                                <span>Schedule Time: {job.time}</span>
-                            </div>
-                        </div>
-
-                        {/* Actions */}
-                        <div className="pt-2 border-t border-[#1E293B]/20 flex items-center justify-between">
-                            {job.status === 'Scheduled' && (
-                                <button
-                                    onClick={() => handleCheckIn(job.id)}
-                                    className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl flex items-center justify-center gap-1.5 text-xs transition"
-                                >
-                                    <FaPlay className="text-[9px]" /> Check-In (Start Job)
-                                </button>
-                            )}
-
-                            {job.status === 'In Progress' && (
-                                <button
-                                    onClick={() => handleCheckOutOpen(job)}
-                                    className="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl flex items-center justify-center gap-1.5 text-xs transition shadow-lg shadow-emerald-600/25"
-                                >
-                                    <FaCheckCircle className="text-[10px]" /> Check-Out & Sign off
-                                </button>
-                            )}
-
-                            {job.status === 'Completed' && (
-                                <div className="w-full py-2 bg-white/5 border border-white/5 text-slate-400 font-bold rounded-xl flex items-center justify-center gap-1.5 text-xs">
-                                    <FaCheckCircle className="text-emerald-400 text-[10px]" /> Roster Complete
+                            {/* Col 2: Details */}
+                            <div className="space-y-1.5 text-xs text-slate-300 md:col-span-4">
+                                <div className="flex items-center gap-1.5">
+                                    <FaMapMarkerAlt className="text-rose-500 text-[11px]" />
+                                    <span className="font-semibold text-white">{job.customerName}</span>
                                 </div>
-                            )}
+                                <div className="text-[11px] text-slate-400 pl-4">{job.address}</div>
+                                <div className="flex items-center gap-1.5 mt-1">
+                                    <FaClock className="text-slate-400 text-[10px]" />
+                                    <span>Schedule: {job.timeSlot}</span>
+                                </div>
+                            </div>
+
+                            {/* Col 3: Actions */}
+                            <div className="flex md:justify-end md:col-span-4">
+                                {job.status === 'Pending' && (
+                                    <button
+                                        onClick={() => handleCheckIn(job.id)}
+                                        className="w-full md:w-auto px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-extrabold rounded-xl flex items-center justify-center gap-1.5 text-xs transition shadow-lg"
+                                    >
+                                        <FaPlay className="text-[9px]" /> Check-In (Start Job)
+                                    </button>
+                                )}
+
+                                {job.status === 'In Progress' && (
+                                    <button
+                                        onClick={() => handleCheckOutOpen(job)}
+                                        className="w-full md:w-auto px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold rounded-xl flex items-center justify-center gap-1.5 text-xs transition shadow-lg shadow-emerald-600/20"
+                                    >
+                                        <FaCheckCircle className="text-[10px]" /> Check-Out & Sign off
+                                    </button>
+                                )}
+
+                                {job.status === 'Completed' && (
+                                    <div className="w-full md:w-auto px-5 py-2.5 bg-white/5 border border-white/5 text-slate-400 font-extrabold rounded-xl flex items-center justify-center gap-1.5 text-xs">
+                                        <FaCheckCircle className="text-emerald-400 text-[10px]" /> Roster Complete
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 ))}
