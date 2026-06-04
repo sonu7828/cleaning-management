@@ -473,7 +473,7 @@ const ClientsPage = () => {
                                         <button 
                                             disabled={!(client.advanceBalance > 0)}
                                             onClick={() => setIsRefundModalOpen(true)}
-                                            className="px-2.5 py-1 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-lg text-[9px] disabled:opacity-50 disabled:cursor-not-allowed transition"
+                                            className="px-2.5 py-1 bg-danger hover:bg-red-600 text-white font-bold rounded-lg text-[9px] disabled:opacity-50 disabled:cursor-not-allowed transition"
                                         >
                                             Record Refund
                                         </button>
@@ -1389,7 +1389,7 @@ const ClientsPage = () => {
                             </div>
                             <div className="flex justify-end gap-2 pt-2 border-t border-slate-100">
                                 <button type="button" onClick={() => setIsRefundModalOpen(false)} className="px-4 py-2 border border-slate-200 rounded-xl text-slate-500 hover:bg-slate-50 font-bold">Cancel</button>
-                                <button type="submit" className="px-4 py-2 bg-rose-600 text-white rounded-xl font-bold hover:bg-rose-700">Issue Refund</button>
+                                <button type="submit" className="px-4 py-2 bg-danger text-white rounded-xl font-bold hover:bg-red-600">Issue Refund</button>
                             </div>
                         </form>
                     </div>
@@ -1507,7 +1507,7 @@ const ClientsPage = () => {
                             </div>
                             <div className="flex justify-end gap-2 pt-2 border-t border-slate-100">
                                 <button type="button" onClick={() => setIsComplaintModalOpen(false)} className="px-4 py-2 border border-slate-200 rounded-xl text-slate-500 hover:bg-slate-50 font-bold">Cancel</button>
-                                <button type="submit" className="px-4 py-2 bg-rose-600 text-white rounded-xl font-bold hover:bg-rose-700">File Complaint</button>
+                                <button type="submit" className="px-4 py-2 bg-danger text-white rounded-xl font-bold hover:bg-red-600">File Complaint</button>
                             </div>
                         </form>
                     </div>

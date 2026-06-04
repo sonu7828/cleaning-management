@@ -133,8 +133,8 @@ const LeadsPage = () => {
                                             selectedLead?.id === lead.id ? 'border-blue-500 shadow-blue-500/10' : 'border-white/5 hover:border-white/20'
                                         }`}
                                     >
-                                        <div className="font-extrabold text-white line-clamp-1">{lead.name}</div>
-                                        <div className="text-[10px] text-slate-400 mt-1">Rep: <span className="text-slate-300 font-bold">{lead.contactPerson}</span></div>
+                                        <div className="font-extrabold text-slate-800 line-clamp-1">{lead.name}</div>
+                                        <div className="text-[10px] text-slate-400 mt-1">Rep: <span className="text-slate-600 font-bold">{lead.contactPerson}</span></div>
                                         <div className="text-[10px] text-slate-400 mt-0.5 mb-2 font-bold flex justify-between items-center">
                                             <span>Source: {lead.source}</span>
                                         </div>
@@ -191,15 +191,15 @@ const LeadsPage = () => {
                                     <th className="py-3 px-2 text-right">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-white/5 font-medium text-slate-300">
+                            <tbody className="divide-y divide-white/5 font-medium text-slate-600">
                                 {leads.map(lead => (
                                     <tr key={lead.id} onClick={() => setSelectedLead(lead)} className={`hover:bg-[#1E293B]/60 cursor-pointer transition-colors ${selectedLead?.id === lead.id ? 'bg-[#1E293B]' : ''}`}>
                                         <td className="py-3 px-2">
-                                            <div className="font-bold text-white text-[13px]">{lead.name}</div>
+                                            <div className="font-bold text-slate-800 text-[13px]">{lead.name}</div>
                                             <div className="text-[10px] text-slate-400 mt-0.5">Contact: {lead.contactPerson}</div>
                                         </td>
                                         <td className="py-3 px-2">
-                                            <div className="font-bold text-slate-200">{lead.phone}</div>
+                                            <div className="font-bold text-slate-650">{lead.phone}</div>
                                             <div className="text-[10px] text-slate-400 mt-0.5">{lead.email}</div>
                                         </td>
                                         <td className="py-3 px-2">
@@ -236,7 +236,7 @@ const LeadsPage = () => {
                         <div className="space-y-4 flex-1">
                             <div className="flex justify-between items-start pb-4 border-b border-white/5">
                                 <div>
-                                    <h4 className="text-sm font-black text-white">{selectedLead.name}</h4>
+                                    <h4 className="text-sm font-black text-slate-800">{selectedLead.name}</h4>
                                     <span className={`inline-block px-2 py-0.5 rounded text-[9px] font-black uppercase tracking-wider mt-2 ${stageColors[selectedLead.status] || stageColors['New Lead']}`}>
                                         {selectedLead.status}
                                     </span>
@@ -244,14 +244,14 @@ const LeadsPage = () => {
                                 <span className="text-[9px] font-black text-slate-500 uppercase bg-[#1E293B] px-2 py-1 rounded border border-white/5">ID: {selectedLead.id}</span>
                             </div>
 
-                            <div className="space-y-3 text-xs bg-[#1E293B] p-4 rounded-xl border border-white/5">
-                                <div className="flex justify-between"><span className="text-slate-400 font-bold">Contact Person:</span> <span className="font-black text-white">{selectedLead.contactPerson}</span></div>
-                                <div className="flex justify-between"><span className="text-slate-400 font-bold">Phone Number:</span> <span className="font-black text-white">{selectedLead.phone}</span></div>
-                                <div className="flex justify-between"><span className="text-slate-400 font-bold">Email Address:</span> <span className="font-black text-white">{selectedLead.email}</span></div>
-                                <div className="flex justify-between"><span className="text-slate-400 font-bold">Inquiry Source:</span> <span className="font-black text-white">{selectedLead.source}</span></div>
+                            <div className="space-y-3 text-xs bg-[#1E293B] p-4 rounded-xl border border-white/5 text-slate-600">
+                                <div className="flex justify-between"><span className="text-slate-400 font-bold">Contact Person:</span> <span className="font-black text-slate-800">{selectedLead.contactPerson}</span></div>
+                                <div className="flex justify-between"><span className="text-slate-400 font-bold">Phone Number:</span> <span className="font-black text-slate-800">{selectedLead.phone}</span></div>
+                                <div className="flex justify-between"><span className="text-slate-400 font-bold">Email Address:</span> <span className="font-black text-slate-800">{selectedLead.email}</span></div>
+                                <div className="flex justify-between"><span className="text-slate-400 font-bold">Inquiry Source:</span> <span className="font-black text-slate-800">{selectedLead.source}</span></div>
                                 <div className="pt-3 mt-3 border-t border-white/5">
                                     <span className="text-slate-400 font-bold block mb-1.5">Prospect Notes:</span>
-                                    <p className="text-slate-300 font-medium leading-relaxed text-[11px]">{selectedLead.notes || 'No initial notes provided.'}</p>
+                                    <p className="text-slate-600 font-medium leading-relaxed text-[11px]">{selectedLead.notes || 'No initial notes provided.'}</p>
                                 </div>
                             </div>
 
@@ -264,7 +264,7 @@ const LeadsPage = () => {
                                             <div className="flex justify-between text-slate-400 font-bold">
                                                 <span className="flex items-center gap-1.5"><FaCalendarDay className="text-blue-400/70" /> {follow.date}</span>
                                             </div>
-                                            <p className="text-slate-200 font-medium leading-relaxed">{follow.note}</p>
+                                            <p className="text-slate-650 font-medium leading-relaxed">{follow.note}</p>
                                         </div>
                                     ))}
                                     {(!selectedLead.followUps || selectedLead.followUps.length === 0) && (

@@ -182,10 +182,10 @@ const TechnicianDashboard = () => {
                             </div>
 
                             {/* Col 2: Details */}
-                            <div className="space-y-1.5 text-xs text-slate-300 md:col-span-4">
+                            <div className="space-y-1.5 text-xs text-slate-600 md:col-span-4">
                                 <div className="flex items-center gap-1.5">
                                     <FaMapMarkerAlt className="text-rose-500 text-[11px]" />
-                                    <span className="font-semibold text-white">{job.customerName}</span>
+                                    <span className="font-semibold text-slate-800">{job.customerName}</span>
                                 </div>
                                 <div className="text-[11px] text-slate-400 pl-4">{job.address}</div>
                                 <div className="flex items-center gap-1.5 mt-1">
@@ -231,7 +231,7 @@ const TechnicianDashboard = () => {
                     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
                         <div className="absolute inset-0 bg-[#020617]/85 backdrop-blur-sm" onClick={() => setShowCheckoutModal(false)}></div>
                         <motion.div 
-                            className="relative bg-[#111827] border-t sm:border border-[#1E293B]/50 rounded-t-3xl sm:rounded-3xl p-5 w-full max-w-md shadow-2xl z-10 space-y-5 max-h-[90vh] overflow-y-auto text-white"
+                            className="relative bg-[#111827] border-t sm:border border-[#1E293B]/50 rounded-t-3xl sm:rounded-3xl p-5 w-full max-w-md shadow-2xl z-10 space-y-5 max-h-[90vh] overflow-y-auto text-slate-800"
                             initial={{ y: '100%' }}
                             animate={{ y: 0 }}
                             exit={{ y: '100%' }}
@@ -248,7 +248,7 @@ const TechnicianDashboard = () => {
 
                             {/* Checklist */}
                             <div className="space-y-2.5">
-                                <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1">
+                                <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1">
                                     <FaCheckSquare className="text-blue-400" /> Quality checklist
                                 </h4>
                                 <div className="space-y-2">
@@ -265,7 +265,7 @@ const TechnicianDashboard = () => {
                                                 onChange={(e) => setChecklist({ ...checklist, [item.key]: e.target.checked })}
                                                 className="rounded bg-[#060a17] border-[#1E293B]/50 text-blue-500 focus:ring-0 w-3.5 h-3.5 cursor-pointer"
                                             />
-                                            <span className={checklist[item.key] ? 'text-slate-400 line-through' : 'text-slate-200'}>{item.label}</span>
+                                            <span className={checklist[item.key] ? 'text-slate-400 line-through' : 'text-slate-700'}>{item.label}</span>
                                         </label>
                                     ))}
                                 </div>
@@ -273,7 +273,7 @@ const TechnicianDashboard = () => {
 
                             {/* Before/After Photos */}
                             <div className="space-y-2">
-                                <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1">
+                                <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1">
                                     <FaImage className="text-blue-400" /> Service Proof Photos
                                 </h4>
                                 <div className="grid grid-cols-2 gap-3">
@@ -309,7 +309,7 @@ const TechnicianDashboard = () => {
                             {/* Signature Pad */}
                             <div className="space-y-2">
                                 <div className="flex items-center justify-between">
-                                    <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1">
+                                    <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1">
                                         <FaSignature className="text-blue-400" /> Client Handover Signature *
                                     </h4>
                                     {hasSigned && (

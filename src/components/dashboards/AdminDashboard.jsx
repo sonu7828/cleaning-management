@@ -91,7 +91,7 @@ const AdminDashboard = () => {
                             >
                                 {step.label}
                             </div>
-                            <div className="text-2xl font-black text-white">{step.value}</div>
+                            <div className="text-2xl font-black text-slate-800">{step.value}</div>
                             <div className="text-[11px] font-medium text-slate-400 mt-1.5">{step.desc}</div>
                         </div>
                     ))}
@@ -120,7 +120,7 @@ const AdminDashboard = () => {
                                     <div className="flex items-center gap-2">
                                         <span className="font-extrabold text-blue-400">{wo.id}</span>
                                         <span className="text-slate-600 font-bold">•</span>
-                                        <span className="font-black text-white">{wo.customerName}</span>
+                                        <span className="font-black text-slate-800">{wo.customerName}</span>
                                     </div>
                                     <div className="text-slate-300 flex items-center gap-1.5">
                                         <FaMapMarkerAlt className="text-blue-400 text-[10px]" />
@@ -162,7 +162,7 @@ const AdminDashboard = () => {
                             {contracts.map(contract => (
                                 <div key={contract.id} className="p-3 bg-[#1E293B]/50 border border-white/5 rounded-xl space-y-1.5 text-xs">
                                     <div className="flex justify-between items-start">
-                                        <span className="font-black text-white truncate max-w-[150px]">{contract.clientName}</span>
+                                        <span className="font-black text-slate-800 truncate max-w-[150px]">{contract.clientName}</span>
                                         <span className={`px-1.5 py-0.5 rounded text-[8px] font-black border ${statusColors[contract.status]}`}>
                                             {contract.status}
                                         </span>
@@ -190,7 +190,7 @@ const AdminDashboard = () => {
                                 {payments.slice(0, 3).map(pay => (
                                     <div key={pay.id} className="flex justify-between items-center text-xs p-3 bg-[#1E293B]/50 border border-white/5 rounded-xl">
                                         <div>
-                                            <div className="font-bold text-white truncate max-w-[140px]">{pay.customerName}</div>
+                                            <div className="font-bold text-slate-800 truncate max-w-[140px]">{pay.customerName}</div>
                                             <div className="text-[9px] text-slate-300 font-bold mt-0.5">{pay.paymentMethod} • Ref {pay.referenceNo}</div>
                                         </div>
                                         <span className="font-black text-emerald-400 shrink-0">AED {pay.amountPaid.toLocaleString()}</span>

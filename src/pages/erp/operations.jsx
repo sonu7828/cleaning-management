@@ -299,7 +299,7 @@ const OperationsPage = () => {
                                 {wo.status === 'In Progress' && (isTechnician || isDispatcher) && (
                                     <button
                                         onClick={() => setCompletionJobId(wo.id)}
-                                        className="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-center transition flex items-center justify-center gap-1 shadow-sm"
+                                        className="w-full py-2 bg-success hover:bg-[#059669] text-white rounded-xl font-bold text-center transition flex items-center justify-center gap-1 shadow-sm"
                                     >
                                         <FaSignature className="text-[10px]" /> Close Out (Paperless)
                                     </button>
@@ -470,7 +470,7 @@ const OperationsPage = () => {
 
                             <div className="flex justify-end gap-2 pt-2 border-t border-slate-100">
                                 <button type="button" onClick={() => setCompletionJobId(null)} className="px-4 py-2 border border-slate-200 rounded-xl text-slate-500 font-bold">Cancel</button>
-                                <button type="submit" className="px-4 py-2 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700">Submit Completion</button>
+                                <button type="submit" className="px-4 py-2 bg-success text-white rounded-xl font-bold hover:bg-[#059669]">Submit Completion</button>
                             </div>
                         </form>
                     </div>

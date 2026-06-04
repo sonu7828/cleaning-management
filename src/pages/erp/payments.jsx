@@ -178,7 +178,7 @@ const PaymentsPage = () => {
 
                             <div className="flex justify-end gap-2 pt-2 border-t border-slate-100">
                                 <button type="button" onClick={() => setShowSettlementModal(null)} className="px-4 py-2 border border-slate-200 rounded-xl text-slate-500 font-bold">Cancel</button>
-                                <button type="submit" className="px-4 py-2 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700">Record Settlement</button>
+                                <button type="submit" className="px-4 py-2 bg-success text-white rounded-xl font-bold hover:bg-[#059669]">Record Settlement</button>
                             </div>
                         </form>
                     </div>
