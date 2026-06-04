@@ -372,6 +372,20 @@ select option {
   color: var(--text-primary) !important;
 }
 
+/* Custom class overrides to support missing Tailwind configurations */
+.bg-success {
+  background-color: #10B981 !important;
+}
+
+.bg-success:hover,
+.hover\:bg-success:hover {
+  background-color: #059669 !important;
+}
+
+.text-slate-650 {
+  color: var(--text-primary) !important;
+}
+
 /* ==========================================================================
    Workstair Theme Custom Overrides (Light Mode, Compact Density, Flat style)
    ========================================================================== */

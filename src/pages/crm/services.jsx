@@ -78,7 +78,7 @@ const ServicesPage = () => {
                 <div className="flex gap-1.5 flex-wrap">
                     {activeCategories.map(cat => (
                         <button key={cat} onClick={() => setFilterCategory(cat)}
-                            className={`px-3.5 py-2 rounded-xl text-xs font-bold transition border ${filterCategory === cat ? 'bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-600/20' : 'bg-[#1E293B] border-white/5 text-slate-400 hover:bg-[#1E293B]/80 hover:text-white'}`}>
+                            className={`px-3.5 py-2 rounded-xl text-xs font-bold transition border ${filterCategory === cat ? 'bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-600/20' : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-50'}`}>
                             {cat}
                         </button>
                     ))}
@@ -89,40 +89,40 @@ const ServicesPage = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filteredServices.map((svc) => (
                     <motion.div key={svc.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-                        className="bg-slate-900/60 border border-white/5 rounded-2xl p-5 shadow-sm hover:shadow-md transition group flex flex-col justify-between min-h-[230px]">
+                        className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition group flex flex-col justify-between min-h-[230px]">
                         <div>
                             <div className="flex items-start justify-between mb-2">
                                 <div>
-                                    <h3 className="text-sm font-black text-white">{svc.name}</h3>
-                                    <span className="inline-block text-[9px] font-black text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2.5 py-0.5 rounded-full uppercase tracking-wider mt-1">{svc.category}</span>
+                                    <h3 className="text-sm font-black text-slate-800">{svc.name}</h3>
+                                    <span className="inline-block text-[9px] font-black text-blue-700 bg-blue-50 border border-blue-100 px-2.5 py-0.5 rounded-full uppercase tracking-wider mt-1">{svc.category}</span>
                                 </div>
                                 {isAdmin && (
                                     <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition shrink-0">
-                                        <button onClick={() => openEdit(svc)} className="p-1.5 text-slate-400 hover:text-blue-400 transition" title="Edit"><FaEdit className="text-xs" /></button>
-                                        <button onClick={() => handleDelete(svc.id)} className="p-1.5 text-slate-400 hover:text-rose-400 transition" title="Delete"><FaTrash className="text-xs" /></button>
+                                        <button onClick={() => openEdit(svc)} className="p-1.5 text-slate-500 hover:text-blue-600 transition" title="Edit"><FaEdit className="text-xs" /></button>
+                                        <button onClick={() => handleDelete(svc.id)} className="p-1.5 text-slate-500 hover:text-rose-600 transition" title="Delete"><FaTrash className="text-xs" /></button>
                                     </div>
                                 )}
                             </div>
-                            <p className="text-slate-400 text-xs line-clamp-2 leading-relaxed mb-4">{svc.description}</p>
+                            <p className="text-slate-600 text-xs line-clamp-2 leading-relaxed mb-4">{svc.description}</p>
                         </div>
                         
-                        <div className="grid grid-cols-3 gap-3 pt-3 border-t border-white/5 text-xs">
+                        <div className="grid grid-cols-3 gap-3 pt-3 border-t border-slate-100 text-xs">
                             <div>
-                                <div className="text-[9px] text-slate-450 font-bold uppercase tracking-wider">Rate</div>
-                                <div className="text-xs font-black text-white">AED {Number(svc.price).toLocaleString()}</div>
-                                <div className="text-[9px] text-slate-450 font-semibold">{svc.unit}</div>
+                                <div className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">Rate</div>
+                                <div className="text-xs font-black text-slate-800">AED {Number(svc.price).toLocaleString()}</div>
+                                <div className="text-[9px] text-slate-500 font-semibold">{svc.unit}</div>
                             </div>
                             <div>
-                                <div className="text-[9px] text-slate-450 font-bold uppercase tracking-wider">VAT</div>
-                                <div className="text-xs font-bold text-slate-200">{svc.vatPercent}%</div>
-                                <div className="text-[9px] text-slate-450 font-semibold">Included</div>
+                                <div className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">VAT</div>
+                                <div className="text-xs font-bold text-slate-700">{svc.vatPercent}%</div>
+                                <div className="text-[9px] text-slate-500 font-semibold">Included</div>
                             </div>
                             <div>
-                                <div className="text-[9px] text-slate-450 font-bold uppercase tracking-wider">Duration</div>
-                                <div className="text-xs font-bold text-slate-200">{svc.duration || 'Flexible'}</div>
+                                <div className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">Duration</div>
+                                <div className="text-xs font-bold text-slate-700">{svc.duration || 'Flexible'}</div>
                             </div>
                             <div className="col-span-3 pt-2">
-                                <span className="inline-block text-[9px] font-black text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 px-2.5 py-0.5 rounded-md uppercase tracking-wider">{svc.frequency} Schedule</span>
+                                <span className="inline-block text-[9px] font-black text-indigo-700 bg-indigo-50 border border-indigo-150 px-2.5 py-0.5 rounded-md uppercase tracking-wider">{svc.frequency} Schedule</span>
                             </div>
                         </div>
                     </motion.div>

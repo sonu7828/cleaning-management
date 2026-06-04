@@ -142,17 +142,17 @@ const TechnicianDashboard = () => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto space-y-6 pb-12 text-slate-100 px-4">
+        <div className="max-w-4xl mx-auto space-y-6 pb-12 text-slate-800 px-4">
             {/* Header */}
-            <div className="flex items-center gap-3 border-b border-white/5 pb-4">
+            <div className="flex items-center gap-3 border-b border-slate-200 pb-4">
                 <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
                     <FaTools className="text-amber-500 text-xl" />
                 </div>
                 <div>
-                    <h1 className="text-xl sm:text-2xl font-black text-white tracking-tight flex items-center gap-2">
+                    <h1 className="text-xl sm:text-2xl font-black text-slate-800 tracking-tight flex items-center gap-2">
                         My Daily Roster Tasks
                     </h1>
-                    <p className="text-slate-400 text-xs mt-0.5">Mobile-first site operator dashboard. Clock-in and sign off checklists.</p>
+                    <p className="text-slate-500 text-xs mt-0.5">Mobile-first site operator dashboard. Clock-in and sign off checklists.</p>
                 </div>
             </div>
 
@@ -171,14 +171,14 @@ const TechnicianDashboard = () => {
                             {/* Col 1: Job Header */}
                             <div className="space-y-1 md:col-span-4">
                                 <span className={`inline-block px-2.5 py-0.5 rounded-full text-[9px] font-bold ${
-                                    job.status === 'Completed' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' :
-                                    job.status === 'In Progress' ? 'bg-blue-500/20 text-blue-300 border border-blue-500/30 animate-pulse' :
-                                    'bg-amber-500/20 text-amber-300 border border-amber-500/30'
+                                    job.status === 'Completed' ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' :
+                                    job.status === 'In Progress' ? 'bg-blue-100 text-blue-800 border border-blue-200 animate-pulse' :
+                                    'bg-amber-100 text-amber-800 border border-amber-200'
                                 }`}>
                                     {job.status}
                                 </span>
-                                <h3 className="font-extrabold text-sm sm:text-base text-white leading-snug">{job.serviceType}</h3>
-                                <p className="text-[10px] text-slate-400 font-semibold">Job Roster ID: {job.id}</p>
+                                <h3 className="font-extrabold text-sm sm:text-base text-slate-800 leading-snug">{job.serviceType}</h3>
+                                <p className="text-[10px] text-slate-500 font-semibold">Job Roster ID: {job.id}</p>
                             </div>
 
                             {/* Col 2: Details */}
@@ -187,10 +187,10 @@ const TechnicianDashboard = () => {
                                     <FaMapMarkerAlt className="text-rose-500 text-[11px]" />
                                     <span className="font-semibold text-slate-800">{job.customerName}</span>
                                 </div>
-                                <div className="text-[11px] text-slate-400 pl-4">{job.address}</div>
+                                <div className="text-[11px] text-slate-600 pl-4">{job.address}</div>
                                 <div className="flex items-center gap-1.5 mt-1">
-                                    <FaClock className="text-slate-400 text-[10px]" />
-                                    <span>Schedule: {job.timeSlot}</span>
+                                    <FaClock className="text-slate-500 text-[10px]" />
+                                    <span className="text-slate-600">Schedule: {job.timeSlot}</span>
                                 </div>
                             </div>
 
@@ -208,15 +208,15 @@ const TechnicianDashboard = () => {
                                 {job.status === 'In Progress' && (
                                     <button
                                         onClick={() => handleCheckOutOpen(job)}
-                                        className="w-full md:w-auto px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold rounded-xl flex items-center justify-center gap-1.5 text-xs transition shadow-lg shadow-emerald-600/20"
+                                        className="w-full md:w-auto px-5 py-2.5 bg-success hover:bg-[#059669] text-white font-extrabold rounded-xl flex items-center justify-center gap-1.5 text-xs transition shadow-lg"
                                     >
                                         <FaCheckCircle className="text-[10px]" /> Check-Out & Sign off
                                     </button>
                                 )}
 
                                 {job.status === 'Completed' && (
-                                    <div className="w-full md:w-auto px-5 py-2.5 bg-white/5 border border-white/5 text-slate-400 font-extrabold rounded-xl flex items-center justify-center gap-1.5 text-xs">
-                                        <FaCheckCircle className="text-emerald-400 text-[10px]" /> Roster Complete
+                                    <div className="w-full md:w-auto px-5 py-2.5 bg-slate-100 border border-slate-200 text-slate-700 font-extrabold rounded-xl flex items-center justify-center gap-1.5 text-xs">
+                                        <FaCheckCircle className="text-success text-[10px]" /> Roster Complete
                                     </div>
                                 )}
                             </div>
@@ -236,20 +236,20 @@ const TechnicianDashboard = () => {
                             animate={{ y: 0 }}
                             exit={{ y: '100%' }}
                         >
-                            <div className="flex items-center gap-2 pb-2 border-b border-[#1E293B]/20">
-                                <button onClick={() => setShowCheckoutModal(false)} className="p-1.5 text-slate-400 hover:bg-white/5 rounded-lg transition">
+                            <div className="flex items-center gap-2 pb-2 border-b border-slate-200">
+                                <button onClick={() => setShowCheckoutModal(false)} className="p-1.5 text-slate-500 hover:bg-slate-100 rounded-lg transition">
                                     <FaArrowLeft className="text-xs" />
                                 </button>
                                 <div>
-                                    <h3 className="text-base font-black text-white">Job Sign-off Check Sheet</h3>
-                                    <p className="text-[10px] text-slate-400">Complete quality checks to close Job Roster: {activeJob?.id}</p>
+                                    <h3 className="text-base font-black text-slate-800">Job Sign-off Check Sheet</h3>
+                                    <p className="text-[10px] text-slate-500">Complete quality checks to close Job Roster: {activeJob?.id}</p>
                                 </div>
                             </div>
 
                             {/* Checklist */}
                             <div className="space-y-2.5">
                                 <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1">
-                                    <FaCheckSquare className="text-blue-400" /> Quality checklist
+                                    <FaCheckSquare className="text-blue-500" /> Quality checklist
                                 </h4>
                                 <div className="space-y-2">
                                     {[
@@ -258,12 +258,12 @@ const TechnicianDashboard = () => {
                                         { key: 'sanitizationApplied', label: 'Disinfection spray applied to desks *' },
                                         { key: 'windowsPolished', label: 'Glass mirrors & windows polished' }
                                     ].map((item) => (
-                                        <label key={item.key} className="flex items-center space-x-2.5 p-2 bg-white/5 hover:bg-white/10 border border-[#1E293B]/25 rounded-xl text-xs font-semibold cursor-pointer transition">
+                                        <label key={item.key} className="flex items-center space-x-2.5 p-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl text-xs font-semibold cursor-pointer transition">
                                             <input 
                                                 type="checkbox" 
                                                 checked={checklist[item.key]} 
                                                 onChange={(e) => setChecklist({ ...checklist, [item.key]: e.target.checked })}
-                                                className="rounded bg-[#060a17] border-[#1E293B]/50 text-blue-500 focus:ring-0 w-3.5 h-3.5 cursor-pointer"
+                                                className="rounded bg-white border-slate-300 text-blue-650 focus:ring-0 w-3.5 h-3.5 cursor-pointer"
                                             />
                                             <span className={checklist[item.key] ? 'text-slate-400 line-through' : 'text-slate-700'}>{item.label}</span>
                                         </label>
@@ -274,14 +274,14 @@ const TechnicianDashboard = () => {
                             {/* Before/After Photos */}
                             <div className="space-y-2">
                                 <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1">
-                                    <FaImage className="text-blue-400" /> Service Proof Photos
+                                    <FaImage className="text-blue-500" /> Service Proof Photos
                                 </h4>
                                 <div className="grid grid-cols-2 gap-3">
                                     <div className="space-y-1">
-                                        <span className="text-[10px] font-bold text-slate-400">Before Photo</span>
+                                        <span className="text-[10px] font-bold text-slate-500">Before Photo</span>
                                         <div 
                                             onClick={() => simulatePhotoUpload('before')}
-                                            className="h-20 rounded-xl border border-dashed border-[#1E293B]/50 bg-[#060a17] hover:bg-[#0a0f24] flex flex-col items-center justify-center cursor-pointer overflow-hidden relative transition"
+                                            className="h-20 rounded-xl border border-dashed border-slate-300 bg-slate-50 hover:bg-slate-100 flex flex-col items-center justify-center cursor-pointer overflow-hidden relative transition"
                                         >
                                             {beforePhoto ? (
                                                 <img src={beforePhoto} alt="Before" className="w-full h-full object-cover" />
@@ -291,10 +291,10 @@ const TechnicianDashboard = () => {
                                         </div>
                                     </div>
                                     <div className="space-y-1">
-                                        <span className="text-[10px] font-bold text-slate-400">After Photo *</span>
+                                        <span className="text-[10px] font-bold text-slate-500">After Photo *</span>
                                         <div 
                                             onClick={() => simulatePhotoUpload('after')}
-                                            className="h-20 rounded-xl border border-dashed border-[#1E293B]/50 bg-[#060a17] hover:bg-[#0a0f24] flex flex-col items-center justify-center cursor-pointer overflow-hidden relative transition"
+                                            className="h-20 rounded-xl border border-dashed border-slate-300 bg-slate-50 hover:bg-slate-100 flex flex-col items-center justify-center cursor-pointer overflow-hidden relative transition"
                                         >
                                             {afterPhoto ? (
                                                 <img src={afterPhoto} alt="After" className="w-full h-full object-cover" />
@@ -310,14 +310,14 @@ const TechnicianDashboard = () => {
                             <div className="space-y-2">
                                 <div className="flex items-center justify-between">
                                     <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1">
-                                        <FaSignature className="text-blue-400" /> Client Handover Signature *
+                                        <FaSignature className="text-blue-500" /> Client Handover Signature *
                                     </h4>
                                     {hasSigned && (
-                                        <button onClick={clearSignature} className="text-[10px] text-rose-400 font-bold hover:underline transition">Clear</button>
+                                        <button onClick={clearSignature} className="text-[10px] text-rose-500 font-bold hover:underline transition">Clear</button>
                                     )}
                                 </div>
 
-                                <div className="border border-[#1E293B]/50 rounded-xl overflow-hidden bg-[#060a17]">
+                                <div className="border border-slate-300 rounded-xl overflow-hidden bg-slate-50">
                                     <canvas
                                         ref={canvasRef}
                                         onMouseDown={startDrawing}
@@ -327,10 +327,10 @@ const TechnicianDashboard = () => {
                                         onTouchStart={startDrawing}
                                         onTouchMove={draw}
                                         onTouchEnd={stopDrawing}
-                                        className="w-full h-[100px] cursor-crosshair touch-none bg-[#060a17]"
+                                        className="w-full h-[100px] cursor-crosshair touch-none bg-slate-50"
                                     />
                                 </div>
-                                <p className="text-[9px] text-slate-400 leading-normal">Draw signature inside the box using mouse pointer or finger touch screen.</p>
+                                <p className="text-[9px] text-slate-500 leading-normal">Draw signature inside the box using mouse pointer or finger touch screen.</p>
                             </div>
 
                             {/* Submit Sign off */}

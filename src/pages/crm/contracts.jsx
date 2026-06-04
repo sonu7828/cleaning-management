@@ -302,7 +302,7 @@ const ContractsPage = () => {
                     </div>
                     <button
                         onClick={() => handleCreateInvoice(ctr)}
-                        className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold transition flex items-center gap-1.5 shadow-md shadow-emerald-600/10 shrink-0"
+                        className="px-3.5 py-2 bg-success hover:bg-[#059669] text-white rounded-xl font-bold transition flex items-center gap-1.5 shadow-md shadow-emerald-600/10 shrink-0"
                     >
                         Issue Installment Invoice
                     </button>
@@ -352,23 +352,23 @@ const ContractsPage = () => {
             {/* AMC Dashboard Metric Cards (Missing Item 12) */}
             <div className="grid grid-cols-2 md:grid-cols-5 gap-3.5">
                 <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-                    <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Active AMCs</div>
+                    <div className="text-[10px] text-slate-700 font-bold uppercase tracking-wider">Active AMCs</div>
                     <div className="text-lg font-black text-emerald-600 mt-1">{activeAMCs}</div>
                 </div>
                 <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-                    <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider text-rose-500">Expiring (30 Days)</div>
+                    <div className="text-[10px] text-rose-700 font-bold uppercase tracking-wider">Expiring (30 Days)</div>
                     <div className="text-lg font-black text-rose-600 mt-1">{expiringAMCs}</div>
                 </div>
                 <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-                    <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider text-blue-500">Service Due Today</div>
+                    <div className="text-[10px] text-blue-700 font-bold uppercase tracking-wider">Service Due Today</div>
                     <div className="text-lg font-black text-blue-600 mt-1">{serviceDueToday}</div>
                 </div>
                 <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-                    <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider text-orange-500">Open Complaints</div>
+                    <div className="text-[10px] text-amber-700 font-bold uppercase tracking-wider">Open Complaints</div>
                     <div className="text-lg font-black text-orange-605 mt-1">{openComplaints}</div>
                 </div>
                 <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-                    <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider text-indigo-500 font-black">YTD AMC Value</div>
+                    <div className="text-[10px] text-indigo-700 font-bold uppercase tracking-wider font-black">YTD AMC Value</div>
                     <div className="text-lg font-black text-indigo-600 mt-1">AED {ytdAMCRevenue.toLocaleString()}</div>
                 </div>
             </div>

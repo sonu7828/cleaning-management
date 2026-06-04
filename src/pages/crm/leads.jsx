@@ -120,7 +120,7 @@ const LeadsPage = () => {
                                 <span className="text-[10px] font-black uppercase text-slate-300 tracking-wider truncate" style={{ color: stageColors[stage]?.match(/text-(\w+)-400/)?.[0]?.replace('text-', '') }}>
                                     {stage}
                                 </span>
-                                <span className="w-5 h-5 rounded-md bg-[#1E293B] border border-white/10 text-white flex items-center justify-center text-[10px] font-black shadow-sm">
+                                <span className="w-5 h-5 rounded-md bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center text-[10px] font-black shadow-sm">
                                     {stageLeads.length}
                                 </span>
                             </div>
