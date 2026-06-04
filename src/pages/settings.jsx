@@ -175,7 +175,7 @@ const SettingsPage = () => {
                         onClick={handleSave}
                         className={`inline-flex items-center gap-2 px-5 py-2.5 font-bold rounded-xl text-xs transition-all ${
                             saved 
-                                ? 'bg-emerald-600 text-white' 
+                                ? 'bg-success text-white' 
                                 : 'bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-600/10 active:scale-[0.98]'
                         }`}
                     >

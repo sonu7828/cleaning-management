@@ -38,17 +38,17 @@ const DriverDashboard = () => {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                 <div className="bg-[#1E293B]/60 border border-white/5 rounded-2xl p-4 text-center">
                     <div className="text-xs uppercase font-black tracking-widest text-indigo-400">Total Runs</div>
-                    <div className="text-xl sm:text-2xl font-black text-white mt-1">{driverRoutes.length}</div>
+                    <div className="text-xl sm:text-2xl font-black text-slate-800 mt-1">{driverRoutes.length}</div>
                 </div>
                 <div className="bg-[#1E293B]/60 border border-white/5 rounded-2xl p-4 text-center">
                     <div className="text-xs uppercase font-black tracking-widest text-emerald-400">Completed</div>
-                    <div className="text-xl sm:text-2xl font-black text-white mt-1">
+                    <div className="text-xl sm:text-2xl font-black text-slate-800 mt-1">
                         {driverRoutes.filter(r => r.status === 'Completed').length}
                     </div>
                 </div>
                 <div className="bg-[#1E293B]/60 border border-white/5 rounded-2xl p-4 text-center flex flex-col justify-center items-center">
                     <div className="text-xs uppercase font-black tracking-widest text-amber-400">Active Van</div>
-                    <div className="text-sm font-black text-white mt-1 truncate max-w-full">Van #04</div>
+                    <div className="text-sm font-black text-slate-800 mt-1 truncate max-w-full">Van #04</div>
                 </div>
             </div>
 
@@ -92,10 +92,10 @@ const DriverDashboard = () => {
                                 </div>
 
                                 {/* Col 2: Details */}
-                                <div className="space-y-2 text-xs text-slate-300 md:col-span-4">
+                                <div className="space-y-2 text-xs text-slate-600 md:col-span-4">
                                     <div className="flex items-start gap-1.5">
                                         <FaMapMarkerAlt className="text-rose-500 text-[11px] mt-0.5 shrink-0" />
-                                        <span className="font-medium text-slate-200">{route.address}</span>
+                                        <span className="font-medium text-slate-700">{route.address}</span>
                                     </div>
                                     <div className="flex items-center gap-1.5">
                                         <FaClock className="text-slate-400 text-[10px] shrink-0" />
@@ -103,7 +103,7 @@ const DriverDashboard = () => {
                                     </div>
                                     <div className="flex items-center gap-1.5">
                                         <FaUserFriends className="text-indigo-400 text-[10px] shrink-0" />
-                                        <span>Crew: <strong className="text-white">{route.assignedTechnician}</strong></span>
+                                        <span>Crew: <strong className="text-slate-800">{route.assignedTechnician}</strong></span>
                                     </div>
                                     {route.instructions && (
                                         <div className="mt-1.5 p-2 bg-slate-900/60 border border-white/5 rounded-xl text-[10px] text-slate-400 leading-relaxed">

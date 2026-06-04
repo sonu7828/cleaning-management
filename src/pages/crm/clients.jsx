@@ -406,34 +406,34 @@ const ClientsPage = () => {
                                 <div className="space-y-3 bg-slate-50/50 p-4 border border-slate-100 rounded-2xl">
                                     <h4 className="font-black text-slate-800 flex items-center gap-1.5"><FaBuilding className="text-blue-500" /> Basic Details</h4>
                                     <div className="space-y-2 text-slate-600">
-                                        <div className="flex justify-between gap-2"><span className="text-slate-400 font-bold shrink-0">Contact Person:</span> <span className="font-semibold text-slate-800">{client.contactPerson}</span></div>
-                                        <div className="flex justify-between gap-2"><span className="text-slate-400 font-bold shrink-0">Phone:</span> <span className="font-semibold text-slate-800">{client.phone}</span></div>
-                                        {client.whatsapp && <div className="flex justify-between gap-2"><span className="text-slate-400 font-bold shrink-0">WhatsApp:</span> <span className="font-semibold text-slate-800 flex items-center gap-1"><FaWhatsapp className="text-emerald-500" /> {client.whatsapp}</span></div>}
-                                        {client.landline && <div className="flex justify-between gap-2"><span className="text-slate-400 font-bold shrink-0">Landline:</span> <span className="font-semibold text-slate-800">{client.landline}</span></div>}
-                                        <div className="flex justify-between gap-2"><span className="text-slate-400 font-bold shrink-0">Email:</span> <span className="font-semibold text-slate-800 break-all">{client.email}</span></div>
-                                        {client.website && <div className="flex justify-between gap-2"><span className="text-slate-400 font-bold shrink-0">Website:</span> <span className="font-semibold text-slate-800 break-all">{client.website}</span></div>}
-                                        <div className="flex justify-between gap-2"><span className="text-slate-400 font-bold shrink-0">TRN Tax No:</span> <span className="font-mono font-bold text-slate-800">{client.trn || 'Not Registered'}</span></div>
-                                        {client.industry && <div className="flex justify-between gap-2"><span className="text-slate-400 font-bold shrink-0">Industry:</span> <span className="font-semibold text-slate-800">{client.industry}</span></div>}
-                                        {client.source && <div className="flex justify-between gap-2"><span className="text-slate-400 font-bold shrink-0">Source:</span> <span className="font-semibold text-slate-800">{client.source}</span></div>}
+                                        <div className="flex justify-between gap-2"><span className="text-slate-500 font-bold shrink-0">Contact Person:</span> <span className="font-semibold text-slate-800">{client.contactPerson}</span></div>
+                                        <div className="flex justify-between gap-2"><span className="text-slate-500 font-bold shrink-0">Phone:</span> <span className="font-semibold text-slate-800">{client.phone}</span></div>
+                                        {client.whatsapp && <div className="flex justify-between gap-2"><span className="text-slate-500 font-bold shrink-0">WhatsApp:</span> <span className="font-semibold text-slate-800 flex items-center gap-1"><FaWhatsapp className="text-emerald-500" /> {client.whatsapp}</span></div>}
+                                        {client.landline && <div className="flex justify-between gap-2"><span className="text-slate-500 font-bold shrink-0">Landline:</span> <span className="font-semibold text-slate-800">{client.landline}</span></div>}
+                                        <div className="flex justify-between gap-2"><span className="text-slate-500 font-bold shrink-0">Email:</span> <span className="font-semibold text-slate-800 break-all">{client.email}</span></div>
+                                        {client.website && <div className="flex justify-between gap-2"><span className="text-slate-500 font-bold shrink-0">Website:</span> <span className="font-semibold text-slate-800 break-all">{client.website}</span></div>}
+                                        <div className="flex justify-between gap-2"><span className="text-slate-500 font-bold shrink-0">TRN Tax No:</span> <span className="font-mono font-bold text-slate-800">{client.trn || 'Not Registered'}</span></div>
+                                        {client.industry && <div className="flex justify-between gap-2"><span className="text-slate-500 font-bold shrink-0">Industry:</span> <span className="font-semibold text-slate-800">{client.industry}</span></div>}
+                                        {client.source && <div className="flex justify-between gap-2"><span className="text-slate-500 font-bold shrink-0">Source:</span> <span className="font-semibold text-slate-800">{client.source}</span></div>}
                                     </div>
                                 </div>
 
                                 <div className="space-y-3 bg-slate-50/50 p-4 border border-slate-100 rounded-2xl">
                                     <h4 className="font-black text-slate-800 flex items-center gap-1.5"><FaMapMarkerAlt className="text-blue-500" /> Location Details</h4>
                                     <div className="space-y-2 text-slate-600">
-                                        <div className="flex justify-between gap-2"><span className="text-slate-400 font-bold shrink-0">Emirate:</span> <span className="font-semibold text-slate-800">{client.emirate || 'Dubai'}</span></div>
-                                        <div className="flex justify-between gap-2"><span className="text-slate-400 font-bold shrink-0">City:</span> <span className="font-semibold text-slate-800">{client.city || 'Dubai'}</span></div>
-                                        {client.buildingName && <div className="flex justify-between gap-2"><span className="text-slate-400 font-bold shrink-0">Building:</span> <span className="font-semibold text-slate-800">{client.buildingName}</span></div>}
-                                        {client.officeVilla && <div className="flex justify-between gap-2"><span className="text-slate-400 font-bold shrink-0">Office/Villa No:</span> <span className="font-semibold text-slate-800">{client.officeVilla}</span></div>}
-                                        {client.landmark && <div className="flex justify-between gap-2"><span className="text-slate-400 font-bold shrink-0">Landmark:</span> <span className="font-semibold text-slate-800">{client.landmark}</span></div>}
-                                        {client.gpsCoordinates && <div className="flex justify-between gap-2"><span className="text-slate-400 font-bold shrink-0">GPS Coordinates:</span> <span className="font-mono font-semibold text-slate-800">{client.gpsCoordinates}</span></div>}
+                                        <div className="flex justify-between gap-2"><span className="text-slate-500 font-bold shrink-0">Emirate:</span> <span className="font-semibold text-slate-800">{client.emirate || 'Dubai'}</span></div>
+                                        <div className="flex justify-between gap-2"><span className="text-slate-505 font-bold shrink-0">City:</span> <span className="font-semibold text-slate-800">{client.city || 'Dubai'}</span></div>
+                                        {client.buildingName && <div className="flex justify-between gap-2"><span className="text-slate-500 font-bold shrink-0">Building:</span> <span className="font-semibold text-slate-800">{client.buildingName}</span></div>}
+                                        {client.officeVilla && <div className="flex justify-between gap-2"><span className="text-slate-500 font-bold shrink-0">Office/Villa No:</span> <span className="font-semibold text-slate-800">{client.officeVilla}</span></div>}
+                                        {client.landmark && <div className="flex justify-between gap-2"><span className="text-slate-500 font-bold shrink-0">Landmark:</span> <span className="font-semibold text-slate-800">{client.landmark}</span></div>}
+                                        {client.gpsCoordinates && <div className="flex justify-between gap-2"><span className="text-slate-505 font-bold shrink-0">GPS Coordinates:</span> <span className="font-mono font-semibold text-slate-800">{client.gpsCoordinates}</span></div>}
                                         {client.googleMapLink && (
                                             <div className="pt-1.5 border-t border-slate-200 flex justify-end">
                                                 <a href={client.googleMapLink} target="_blank" rel="noreferrer" className="text-blue-600 font-bold hover:underline inline-flex items-center gap-1">Open Google Map <FaArrowRight className="text-[10px]" /></a>
                                             </div>
                                         )}
-                                        <div className="flex justify-between gap-2"><span className="text-slate-400 font-bold shrink-0">Pref. Timing:</span> <span className="font-semibold text-slate-800">{client.preferredTiming || 'N/A'}</span></div>
-                                        <div className="flex justify-between gap-2"><span className="text-slate-400 font-bold shrink-0">Priority Level:</span> <span className="font-semibold text-slate-800">{client.priorityLevel || 'Medium'}</span></div>
+                                        <div className="flex justify-between gap-2"><span className="text-slate-500 font-bold shrink-0">Pref. Timing:</span> <span className="font-semibold text-slate-800">{client.preferredTiming || 'N/A'}</span></div>
+                                        <div className="flex justify-between gap-2"><span className="text-slate-500 font-bold shrink-0">Priority Level:</span> <span className="font-semibold text-slate-800">{client.priorityLevel || 'Medium'}</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -461,9 +461,9 @@ const ClientsPage = () => {
                                 </div>
 
                                 <div className="space-y-2.5 text-slate-600 text-[11px] pt-1">
-                                    <div className="flex justify-between"><span className="text-slate-400 font-bold">Credit Limit:</span> <span className="font-bold text-slate-800">AED {(client.creditLimit || 0).toLocaleString()}</span></div>
-                                    <div className="flex justify-between"><span className="text-slate-400 font-bold">Payment Terms:</span> <span className="font-bold text-slate-800">{client.paymentTerms || 'COD'}</span></div>
-                                    <div className="flex justify-between"><span className="text-slate-400 font-bold">Last Payment Date:</span> <span className="font-bold text-slate-800">{lastPayment ? `${lastPayment.date} (AED ${lastPayment.amountPaid})` : 'No payments logged'}</span></div>
+                                    <div className="flex justify-between"><span className="text-slate-500 font-bold">Credit Limit:</span> <span className="font-bold text-slate-800">AED {(client.creditLimit || 0).toLocaleString()}</span></div>
+                                    <div className="flex justify-between"><span className="text-slate-500 font-bold">Payment Terms:</span> <span className="font-bold text-slate-800">{client.paymentTerms || 'COD'}</span></div>
+                                    <div className="flex justify-between"><span className="text-slate-500 font-bold">Last Payment Date:</span> <span className="font-bold text-slate-800">{lastPayment ? `${lastPayment.date} (AED ${lastPayment.amountPaid})` : 'No payments logged'}</span></div>
                                 </div>
 
                                 {/* Refund History */}
@@ -473,7 +473,7 @@ const ClientsPage = () => {
                                         <button 
                                             disabled={!(client.advanceBalance > 0)}
                                             onClick={() => setIsRefundModalOpen(true)}
-                                            className="px-2.5 py-1 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-lg text-[9px] disabled:opacity-50 disabled:cursor-not-allowed transition"
+                                            className="px-2.5 py-1 bg-danger hover:bg-red-600 text-white font-bold rounded-lg text-[9px] disabled:opacity-50 disabled:cursor-not-allowed transition"
                                         >
                                             Record Refund
                                         </button>
@@ -976,8 +976,8 @@ const ClientsPage = () => {
                                                 <div className="font-extrabold text-slate-800">{client.name}</div>
                                                 {overdue && <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" title="Overdue Payment Alert" />}
                                             </div>
-                                            <div className="text-[10px] text-slate-500 font-bold">{client.contactPerson} • {client.emirate || 'Dubai'}</div>
-                                            <div className="text-[9px] text-slate-400">TRN: {client.trn || 'N/A'} • {client.phone}</div>
+                                            <div className="text-[10px] text-slate-700 font-bold">{client.contactPerson} • {client.emirate || 'Dubai'}</div>
+                                            <div className="text-[9px] text-slate-600 font-semibold">TRN: {client.trn || 'N/A'} • {client.phone}</div>
                                         </div>
                                         <div className="flex flex-col items-end gap-1.5">
                                             <span className="text-[9px] font-black text-slate-400 bg-white border border-slate-200 px-2 py-0.5 rounded">
@@ -1389,7 +1389,7 @@ const ClientsPage = () => {
                             </div>
                             <div className="flex justify-end gap-2 pt-2 border-t border-slate-100">
                                 <button type="button" onClick={() => setIsRefundModalOpen(false)} className="px-4 py-2 border border-slate-200 rounded-xl text-slate-500 hover:bg-slate-50 font-bold">Cancel</button>
-                                <button type="submit" className="px-4 py-2 bg-rose-600 text-white rounded-xl font-bold hover:bg-rose-700">Issue Refund</button>
+                                <button type="submit" className="px-4 py-2 bg-danger text-white rounded-xl font-bold hover:bg-red-600">Issue Refund</button>
                             </div>
                         </form>
                     </div>
@@ -1507,7 +1507,7 @@ const ClientsPage = () => {
                             </div>
                             <div className="flex justify-end gap-2 pt-2 border-t border-slate-100">
                                 <button type="button" onClick={() => setIsComplaintModalOpen(false)} className="px-4 py-2 border border-slate-200 rounded-xl text-slate-500 hover:bg-slate-50 font-bold">Cancel</button>
-                                <button type="submit" className="px-4 py-2 bg-rose-600 text-white rounded-xl font-bold hover:bg-rose-700">File Complaint</button>
+                                <button type="submit" className="px-4 py-2 bg-danger text-white rounded-xl font-bold hover:bg-red-600">File Complaint</button>
                             </div>
                         </form>
                     </div>

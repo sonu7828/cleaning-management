@@ -151,13 +151,13 @@ const InventoryPage = () => {
                                         <div className="flex gap-2 pt-1 border-t border-slate-200/50">
                                             <button 
                                                 onClick={() => allocatePartsToJob(req.id)}
-                                                className="flex-1 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold text-[10px] transition shadow-sm"
+                                                className="flex-1 px-3 py-1.5 bg-success hover:bg-[#059669] text-white rounded-lg font-bold text-[10px] transition shadow-sm"
                                             >
                                                 Approve & Deduct
                                             </button>
                                             <button 
                                                 onClick={() => rejectPartsRequest(req.id)}
-                                                className="px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-250 rounded-lg font-bold text-[10px] transition"
+                                                className="px-3 py-1.5 bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 rounded-lg font-bold text-[10px] transition"
                                             >
                                                 Reject
                                             </button>

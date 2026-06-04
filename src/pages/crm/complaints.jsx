@@ -130,7 +130,7 @@ const ComplaintsPage = () => {
                 </div>
                 <button 
                     onClick={() => setIsAddModalOpen(true)} 
-                    className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-rose-600 hover:bg-rose-750 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-rose-600/10"
+                    className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-danger hover:bg-red-600 text-white font-bold rounded-xl text-xs transition shadow-lg"
                 >
                     <FaPlus className="text-[10px]" /> File Complaint
                 </button>
@@ -175,7 +175,7 @@ const ComplaintsPage = () => {
                             onClick={() => setFilterStatus(st)}
                             className={`px-3 py-2 rounded-xl font-bold border transition ${
                                 filterStatus === st 
-                                    ? 'bg-slate-850 border-slate-850 text-white' 
+                                    ? 'bg-primary border-primary text-white' 
                                     : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-100'
                             }`}
                         >
@@ -250,7 +250,7 @@ const ComplaintsPage = () => {
                                                 {comp.status !== 'Resolved' ? (
                                                     <button
                                                         onClick={() => setSelectedComplaint(comp)}
-                                                        className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold transition shadow-sm flex items-center gap-1.5 inline-flex"
+                                                        className="px-2.5 py-1 bg-success hover:bg-[#059669] text-white rounded-lg font-bold transition shadow-sm flex items-center gap-1.5 inline-flex"
                                                     >
                                                         <FaCheck className="text-[9px]" /> Resolve
                                                     </button>
@@ -363,7 +363,7 @@ const ComplaintsPage = () => {
 
                             <div className="flex justify-end gap-2 pt-2 border-t border-slate-100">
                                 <button type="button" onClick={() => setIsAddModalOpen(false)} className="px-4 py-2 border border-slate-200 rounded-xl text-slate-500 font-bold">Cancel</button>
-                                <button type="submit" className="px-4 py-2 bg-rose-605 text-white bg-rose-650 hover:bg-rose-700 rounded-xl font-bold">File Complaint</button>
+                                <button type="submit" className="px-4 py-2 bg-danger hover:bg-red-650 text-white rounded-xl font-bold">File Complaint</button>
                             </div>
                         </form>
                     </div>
@@ -398,7 +398,7 @@ const ComplaintsPage = () => {
 
                             <div className="flex justify-end gap-2 pt-2 border-t border-slate-100">
                                 <button type="button" onClick={() => setSelectedComplaint(null)} className="px-4 py-2 border border-slate-200 rounded-xl text-slate-500 font-bold">Cancel</button>
-                                <button type="submit" className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold">Resolve Ticket</button>
+                                <button type="submit" className="px-4 py-2 bg-success hover:bg-[#059669] text-white rounded-xl font-bold">Resolve Ticket</button>
                             </div>
                         </form>
                     </div>
